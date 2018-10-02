@@ -1,0 +1,245 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700');
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+/*Custom style*/
+
+/*
+ *  Scrollbar
+ */
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(59, 59, 83, 0.27);
+    background-color: #fcfcfc;
+}
+
+::-webkit-scrollbar
+{
+    width: 6px;
+    background-color: #F5F5F5;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background-color: #fac134;
+    border: 0px solid #43425d;
+}
+
+html,
+body {
+    min-height: 100vh;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #5f606c;
+}
+
+a,a:hover,a:focus,a:active { color: #fac747;}
+
+/*Custom bootstrap style*/
+/*Layout*/
+.container-fluid.fluidWidth {
+    width: 92%;
+}
+/*Droupdown*/
+.dropdown-menu {
+    left: 0;
+    right: initial;
+    border: none;
+    border-radius: 2px;
+    -webkit-box-shadow: 0px 2px 8px #e6e5e5;
+    box-shadow: 0px 2px 8px #e6e5e5;
+}
+
+.dropdown-menu.right {
+    left: initial;
+    right: -5px;
+    border: none;
+    border-radius: 2px;
+    -webkit-box-shadow: 0px 2px 8px #e6e5e5;
+    box-shadow: 0px 2px 8px #e6e5e5;
+
+}
+
+/*Button*/
+
+.themeBtn {
+    background: #fac747;
+    color: #fff;
+}
+
+/*Inputs*/
+
+input[type=checkbox], input[type=radio]{
+    opacity: 0;
+}
+
+.mat-checkbox-checked .mat-checkbox-checkmark-path {
+    stroke-dashoffset: 0;
+    stroke: #43425d;
+}
+
+.selectMini .mat-form-field-infix {
+    width: 80px;
+    border-top: 0 !important;
+}
+.mat-form-field-infix {
+    max-width: 180px;
+    width: 100%;
+}
+.inpGrp .mat-form-field.mat-focused .mat-form-field-ripple,
+.inpGrp .mat-form-field-appearance-legacy .mat-form-field-underline {
+    height: 0px !important;
+}
+.inpNotes{ font-size: 10px; }
+.inpGrp {
+    display: flex;
+    border: 1px solid #fac747;
+    margin-bottom: 4px;
+    margin-top: 8px;
+    border-radius: 5px;
+}
+.inpGrp label {
+    padding: 8px 8px;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 400;
+    border-right: 1px solid #fac747;
+}
+.inpGrp .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 8px 8px;
+}
+.inpGrp .mat-form-field-infix {
+    border-top: 0;
+}
+.inpGrp .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+/*Sections*/
+
+.pageContent {
+    padding: 30px 0;
+    padding-top: 80px;
+}
+
+.sectionBx {
+    padding: 5px 0;
+}
+.sectionTitle {
+    margin-top: 10px;
+    margin-bottom: 35px;
+}
+
+/*Helper*/
+
+.right_float{ float: right !important; }
+.left_float{ float: left !important; }
+.txt_themeColor{ color: #fac747; }
+.txt_secColor{ color: #a2a1ae; }
+
+.linkBtn_blue,
+.linkBtn_blue:hover,
+.linkBtn_blue:focus,
+.linkBtn_blue:active{
+    color: #00cff3;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 15px;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.01), 0 4px 10px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.02);
+}
+
+
+
+.mt_2{margin-top: 20px !important;}
+/*Bootstrap*/
+.text-success {
+    color: #33d85f;
+}
+.text-danger {
+    color: #ff0d08;
+}
+/*Custome*/
+.ico_baseClr{ color: #a5a4bf;}
+
+/*Box layout*/
+
+.box_layout {
+    float: left;
+    width: 100%;
+    background: #fff;
+    margin-bottom: 20px;
+}
+
+.borderStruct{
+    border: 1px solid #c0c0c0;
+    border-right: none;
+    border-left: none;
+}
+
+
+/*Section Structure*/
+
+
+.secbxTitle {
+    font-weight: 400;
+    font-size: 16px;
+    color: #5f606c;
+    float: left;
+    margin-top: 2px;
+}
+
+
+
+
+
+
+
+
+/*Ads space management*/
+.adsCheckBox .mat-checkbox-layout {
+    cursor: inherit;
+    align-items: baseline;
+    vertical-align: middle;
+    display: inline-flex;
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+}
+.adsCheckBox .mat-checkbox-inner-container {
+    margin-left: 0;
+    margin-right: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.adsCheckBox .mat-checkbox-checkmark-path {
+    stroke: #fac747!important;
+    opacity: 0 !important;
+}
+.adsCheckBox .mat-checkbox-frame {
+    border-color: rgb(229, 229, 229);
+}
+.mat-checkbox-checked.mat-accent.adsCheckBox .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent.adsCheckBox .mat-checkbox-background {
+    background-color: #fac747!important;
+}

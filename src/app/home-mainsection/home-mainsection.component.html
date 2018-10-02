@@ -1,0 +1,62 @@
+<div class="home-mainsection">
+        <flash-messages></flash-messages>
+    <div class="news-sec-title">
+        <h2>News</h2>
+        <ul>
+            <li><a href="">All News</a><span>|</span></li>
+            <li><a href="">My Wall</a><span>|</span></li>
+            <li><a href="">My Friends</a><span></span></li>
+        </ul>
+    </div>
+
+    <div class="news-section-all">
+        <div class="news-sec" *ngFor="let number of result;let i = index">
+            <div class="news-img">
+                <img class="big-img" src="{{number['img_url']}}" alt="">
+                <img class="small-img" src="assets/images/left-sidebar/5.png" alt="">
+            </div>
+            <div class="news-cont">
+                <a href="" class="news-type">politics</a>
+                <div class="news-content">
+                    <h4>{{number['title']}}</h4>
+                    <div class="news-sharing">
+                        <ul>
+                            <li><a href="" class="new_badge">New</a></li>
+                            <li><a href="">{{number['published_date']}}</a></li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href=""><img src="assets/images/banner/facebook-social-symbol.svg" alt=""></a>
+                            </li>
+                            <li>
+                                <a href=""><img src="assets/images/banner/twitter-logo-silhouette.svg" alt=""></a>
+                            </li>
+                            <li>
+                                <a href=""><img src="assets/images/banner/linkedin-logo.svg" alt=""></a>
+                            </li>
+                            <li>
+                                <a href=""><img src="assets/images/banner/sharethis-logo.svg" alt=""></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <p [innerHTML]="(number['content'].length>100)? (number['content'] | slice:0:100)+'..':(number['content']) "></p>
+                    <div class="news_topic">
+                        <ul>
+                            <li><a href="">news</a></li>
+                            <li><a href="">macedonia</a></li>
+                            <li><a href="">region</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="">A1ON</a><span>|</span></li>
+                            <li><a href="">НОВА МАКЕДОНИЈА</a><span>|</span></li>
+                            <li><a href="">ФАКТОР</a><span>|</span></li>
+                            <li><a href="">SITEL</a><span>|</span></li>
+                            <li><a href="">ТЕЛМА</a></li>
+                            <li><a href="">More…</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>

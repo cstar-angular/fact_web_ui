@@ -1,0 +1,241 @@
+<header>
+  <app-header></app-header>
+</header>
+<main>
+  <div class="banner-home">
+    <flash-messages></flash-messages>
+    <div class="align-center user-profile-details " id="original">
+        <div class="cover-img" *ngIf="url">
+            <img src="{{url}}" alt="cover-img">
+        </div>
+        <div class="cover-img" *ngIf="!url"></div>
+        <div class="cover-img__overlay"></div>
+      <div class="change-cover-img">
+          <input style="display: none;" type="file" id="change-cover-input" name="" (change)="onSelectFile($event)">
+          <label for="change-cover-input">
+              <img src="assets/images/banner/change-cover.png" alt="change-cover-img">
+          </label>
+      </div>
+      <div class="img-circle">
+        <img src="{{result.image}}" id="js-profile-image">
+      </div>
+      <div class="profile_name">
+        <h4 id="js-user-profile-name">{{profile_name}} <img src="assets/images/pencil.png" (click)="updatename()"></h4>
+        <!-- <a href="">following <img src="assets/images/check.png"></a> -->
+        <div class="text-left user-profile-details-edit" id="update">
+          <div class="propfile-edit-pop">
+          <!--  <label for="name">Name</label>
+        <input type="text" id="name" [(ngModel)]="name" name="name" placeholder="Enter your name" value="{{result.name}}">
+        <input type="file" (change)="onFileSelected($event)">
+        <button type="button" (click)="store()">Update</button> -->
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" [(ngModel)]="name" name="name" placeholder="Enter your name" value="{{result.username}}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="userImage">Profile picture</label>
+            <input type="file" (change)="onFileSelected($event)" id="userImage">
+          </div>
+          <div class="form-group submit-btns">
+            <button type="button" (click)="updateBxclose()" class="bxClose_btn">Close</button>
+            <button type="button" (click)="store()" class="update_btn">Update</button>
+          </div>
+        </div>
+        </div>
+      </div>
+      <ul>
+        <li><a href="">133 Reads</a><span>|</span></li>
+        <li><a href="">18 Followers</a><span>|</span></li>
+        <li><a href="">36 Following</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="page-content">
+    <div class="container">
+      <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 home-mainsection">
+          <div class="news-sec-title">
+            <div class="title-filter-sec">
+              <h2>Latest Reads </h2>
+            </div>
+            <div class="filter-sec">
+              <!-- <span>Filter By :</span>
+                <ul>
+                  <li><a class="selected" href="javascript:void(0)"><input type="radio" name="filter" (click)="checkAll(1)" class="js-all" value="1">All News <img src="assets/images/check_color.png"></a><span>|</span></li>
+                  <li><a href="javascript:void(0)"><input type="radio" name="filter" class="js-all-recent" (click)="checkAll(2)" value="2">Recent</a><span>|</span></li>
+                  <li><a href="javascript:void(0)"><input type="radio" name="filter" class="js-all-source" (click)="checkAll(3)" value="3">By Source</a><span>|</span></li>
+                  <li><a href="javascript:void(0)"><input type="radio" name="filter" class="js-all-category" (click)="checkAll(4)" value="4">By Category</a></li>
+                </ul> -->
+              <ul class="latestReadfilter">
+                <!-- <li>
+                    <a class="selected" href="javascript:void(0)" (click) = "checkFilter('asc')">
+                      <input type="radio" id="js-asc-filter" name="filter"> Ascending
+                      <img src="assets/images/check_color.png">
+                    </a><span>|</span>
+                  </li> -->
+                <!-- <li>
+                    <a href="javascript:void(0)" id="js-desc-mark-filter" (click) = "checkFilter('desc')">
+                      <input type="radio" name="filter" id="js-desc-filter">Descending
+                    </a>
+                  </li> -->
+                <li>
+                  <input type="radio" (click)="checkFilter('asc')" class="logged_in_filter" name="filter" id="js-asc-filter" checked>
+                  <label for="js-asc-filter">Ascending</label>
+                </li>
+                <li>
+                  <input type="radio" (click)="checkFilter('desc')" class="logged_in_filter" name="filter" id="js-desc-filter">
+                  <label for="js-desc-filter">Descending</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="news-section-all" (scroll)="lazyload($event)">
+            <div class="news-sec" *ngFor="let number of profile_feed | keys;let i = index">
+              <div class="news-img">
+                <img class="big-img" src="{{profile_feed[i].img_url}}" alt="">
+                <!-- <img class="small-img" src="assets/images/left-sidebar/5.png" alt=""> -->
+              </div>
+              <div class="news-cont">
+                <a href="" class="news-type">{{profile_feed[i].category_name}}</a>
+                <div class="news-content">
+                  <h4><a href="javascript:void(0)" (click) = "loadIframe(number['id'])">{{profile_feed[i].title}}</a></h4>
+                  <span class="news-content__timestamp">{{profile_feed[i].published_date}}</span>
+                  <p>{{profile_feed[i].description}}</p>
+                  <div class="news-cont__bottom">
+                    <div class="news-sharing">
+                        <ul>
+                            <li><a href=""><img src="assets/images/banner/facebook-social-symbol.svg" alt=""></a></li>
+                            <li><a href=""><img src="assets/images/banner/twitter-logo-silhouette.svg" alt=""></a></li>
+                            <li><a href=""><img src="assets/images/banner/linkedin-logo.svg" alt=""></a></li>
+                            <li><a href=""><img src="assets/images/banner/sharethis-logo.svg" alt=""></a></li>
+                        </ul>
+                    </div>
+                    <div class="news_topic">
+                        <ul>{{profile_feed[i].shared_status}}
+                          <li *ngIf="auth == 1 && profile_feed[i].is_shared == 0"><a href="javascript:void(0)" (click)="shareOnMyWall(profile_feed[i].id,profile_feed[i].is_shared)" >Share to my wall</a></li>
+                          <li *ngIf="auth == 1 && profile_feed[i].is_shared == 1"><a href="javascript:void(0)"  (click)="shareOnMyWall(profile_feed[i].id,profile_feed[i].is_shared)" >Remove from my wall</a></li>
+                          <li><a href="javascript:void(0)" class="news-type">{{number.category_name}}</a></li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
+        <div class="following">
+          <div class="title-sec">
+            <h4>Following</h4>
+            <span>336 Following</span>
+          </div>
+          <ul class="following-peoples">
+            <li *ngFor="let number of [0,1,2,3,4,5,6,7,8,9];let i = index;">
+              <a href="">
+                <div class="profile-pic-sec">
+                <img src="assets/images/profile-pic.jpg" alt="">
+                </div>
+                  <span>user {{i+1}}</span>
+
+                </a>
+            </li>
+          </ul>
+          <div class="mybuttons">
+            <button>Show ALL</button>
+          </div>
+        </div>
+        <div class="following followers">
+          <div class="title-sec">
+            <h4>Followers</h4>
+            <span>336 Followers</span>
+          </div>
+          <ul class="following-peoples">
+            <li *ngFor="let number of [0,1,2,3,4,5,6,7,8,9];let i = index;">
+              <a href="">
+                <div class="profile-pic-sec">
+                  <img src="assets/images/profile-pic.jpg" alt="">
+                </div>
+                  <span>user {{i+1}}</span>
+                </a>
+            </li>
+          </ul>
+          <div class="mybuttons">
+            <button>Show ALL</button>
+          </div>
+        </div>
+        <div class="following top-categories">
+          <div class="title-sec">
+            <h4>Top Categories</h4>
+            <!-- <span data-toggle="collapse" data-target="#top-categories"></span> -->
+          </div>
+          <ul class="following-peoples collapse in" id="top-categories">
+            <li *ngFor="let key of user_categories | keys">
+              <a href="javascript:void(0)">{{user_categories[key].category.category_name}}</a>
+            </li>
+            <li *ngIf="user_category_status == 0">
+              Please add some categories
+            </li>
+          </ul>
+          <div class="mybuttons">
+            <button id="js-top-categories__btn" (click)="showAllCategory()">Edit</button>
+          </div>
+          <div id="js-top-categories" class="addPillList" style="display:none">
+            <ul class="following-peoples collapse in" id="top-categories">
+              <li *ngFor="let key of categories | keys">
+                <div class="pillBox">
+                  <input type="checkbox" id="js-category-{{categories[key]['id']}}" (change)="checkedList('category',categories[key]['id'])" [(ngModel)]="categories[key].selected">
+                  <label>{{categories[key]['category_name']}}</label>
+                </div>
+              </li>
+              <li *ngIf="category_status == 0">
+                No categories found
+              </li>
+            </ul>
+            <div *ngIf="category_status == 1" class="text-right">
+              <input class="update_btn" type="button" (click)="updateType('category')" value="Update">
+            </div>
+          </div>
+        </div>
+        <div class="following top-sources">
+          <div class="title-sec">
+            <h4>Top Sources</h4>
+            <!-- <span data-toggle="collapse" data-target="#top-sources"></span> -->
+          </div>
+          <ul class="following-peoples collapse in" id="top-sources" *ngIf="sources">
+            <li *ngFor="let key of user_sources | keys">
+              <a href="javascript:void(0)">{{user_sources[key]['source']['source']}}</a>
+            </li>
+          </ul>
+          <div class="mybuttons">
+            <button id="js-top-sources__btn" (click)="showAllSource()">Edit</button>
+          </div>
+          <div id="js-top-sources" class="addPillList" style="display:none">
+            <ul class="following-peoples collapse in" id="top-sources" *ngIf="sources">
+              <li *ngFor="let key of sources | keys">
+                <div class="pillBox">
+                  <input type="checkbox" id="js-source-{{sources[key]['id']}}" (change)="checkedList('source',sources[key]['id'])" [(ngModel)]="sources[key].selected">
+                  <label>{{sources[key]['source']}}</label>
+                </div>
+              </li>
+              <li *ngIf="sources.length <= 0">
+                No sources found
+              </li>
+            </ul>
+            <div *ngIf="sources.length > 0" class="text-right">
+              <input class="update_btn" type="button" (click)="updateType('source')" value="Update">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="inner-container">
+      <div class="text-center">
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+      </div>
+    </div> -->
+  </div>
+</main>
+<footer>
+  <app-footer></app-footer>
+</footer>

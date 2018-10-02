@@ -1,0 +1,86 @@
+<nav>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pull-left p-0">
+        <div class="logo col-lg-4 col-md-4 col-sm-4 col-xs-12 p-0">
+            <a [routerLink]="['']" class="header-home-link">
+                <img src="assets/images/logo/logo_wht.svg" width="120">
+            </a>
+        </div>
+        <div class="header_search col-lg-8 col-md-8 col-sm-8 col-xs-12 p-0">
+            <form action="">
+                <div class="form-group">
+                    <input type="text" (keyup.enter)="globalSearch()" id = "site-search" placeholder="SEARCH ( iex. “Macedonian national handball team” )">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pull-right p-0 text-right social-signupbtn">
+        <div class="social-links">
+            <ul>
+                <li>
+                    <a href=""><img src="assets/images/banner/facebook-social-symbol-white.svg" style="height:17px"></a>
+                </li>
+                <li>
+                    <a href=""><img src="assets/images/banner/twitter-logo-silhouette-white.svg" alt=""></a>
+                </li>
+                <li>
+                    <a href=""><img src="assets/images/banner/linkedin-logo-white.svg" style="height:18px"></a>
+                </li>
+                <li>
+                    <a href=""><img src="assets/images/banner/sharethis-logo-white.svg" alt=""></a>
+                </li>
+            </ul>
+        </div>
+        <!-- <div class="other_side_sec">
+            <a class="other_side">GO TO THE OTHER SIDE</a>
+        </div> -->
+        <div class="profile">
+            <ul>
+                <!-- <li>
+                    <a href="" class="notification">
+                        <img src="assets/images/notification.png" alt="">
+                        <span class="badge badge-light">4</span>
+                    </a>
+                </li> -->
+                <li class="profile-menu" *ngIf="auth; else loggedOut">
+
+                    <a class="profile-pic" (click)="showSubmenu = !showSubmenu">
+                        <img src="{{result.image}}" alt="">
+                        <span>{{ result.name }}</span>
+                    </a>
+                    <div class="profile_submenu" [ngClass]="{'expanded' : showSubmenu}">
+                        <ul>
+                            <li>
+                                <a [routerLink]="['/profile']">
+                                    <img src="assets/images/user.png" alt="">
+                                    <span>My Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/sensitivity-setting']">
+                                    <img src="assets/images/settings.png">
+                                    <span>Settings</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" (click)="getLogoutProfile()">
+                                    <img src="assets/images/logout.png" alt="">
+                                    <span>Log out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <ng-template #loggedOut>
+                    <li class="before-login">
+                        <a href="javascript: void(0)" (click)="updateBxopen()">Register / Login</a>
+                        <!-- <a data-toggle="modal" (click)="getProfile()" data-target="#popup-background" [hidden]="hideModal">Register Here To Acces Premium Features</a> -->
+                    </li>
+                </ng-template>
+                <!-- <li class="before-login" *ngIf="auth > 0" >
+
+                        <button type="button" class="btn btn-default"  (click)="getLogoutProfile()">Logout</button>
+                    </li> -->
+            </ul>
+        </div>
+    </div>
+</nav>

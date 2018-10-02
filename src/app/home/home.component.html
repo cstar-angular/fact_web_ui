@@ -1,0 +1,271 @@
+<header>
+    <app-header></app-header>
+</header>
+<main>
+    <app-banner-home></app-banner-home>
+
+    <div class="page-content">
+        <div class="container">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                <div class="left-sidenav">
+                    <div class="keywords sidenavBox">
+                        <h4 data-toggle="collapse" data-target="#keywords">keywords <img src="assets/images/left-sidebar/down.png" alt=""></h4>
+                        <div id="keywords" class="collapse in">
+                            <div class="form-group">
+                              <input type="text" id="js-query-q"  placeholder="add keywords…" autofocus="" [(ngModel)]="q" >
+                              <input type="button" value="Filter" (click)="applyFilter()">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="categories sidenavBox">
+                        <h4 data-toggle="collapse" data-target="#categories">categories <img src="assets/images/left-sidebar/down.png" alt=""></h4>
+                        <div id="categories" class="collapse in">
+                            <ul>
+                              <li *ngFor="let category of categories">
+                                <input type="checkbox" (click) = "applyFilter()" class="js-query-search-category" id="category-{{ category.id }}" value="{{ category.id }}">
+                                <label for="category-{{ category.id }}">{{category.category_name }}</label>
+                              </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sources sidenavBox">
+                        <h4 data-toggle="collapse" data-target="#sources">sources <img src="assets/images/left-sidebar/down.png" alt=""> </h4>
+                        <div id="sources" class="collapse in">
+                            <ul>
+                               <li *ngFor="let source of sources">
+                                <input type="checkbox" (click) = "applyFilter()" class="js-query-search-source"  id="source-{{source.id}}" value="{{source.id}}">
+                                <label for="source-{{source.id}}">
+                                	<!-- <span><img src="assets/images/left-sidebar/1.png" alt="">{{source.source }}</span> -->
+                                	<span>{{source.source }}</span>
+                                </label>
+                              </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sources sidenavBox" *ngIf="!left_ad;else view_side_ad">
+                        <img class="img-responsive" src="assets/images/adspace.jpg">
+                    </div>
+                    <ng-template #view_side_ad>
+                        <div class="sources sidenavBox">
+                            <img src="{{left_ad.ad_img_url}}">
+                        </div>
+                    </ng-template>
+                </div>
+
+            </div>
+
+            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="pull-left">
+                            <h4 class="newsTitle">News</h4>
+                        </div>
+                        <div *ngIf="auth == 1" class="pull-right">
+                            <span class="filTitle">Filter : &nbsp;</span>
+                            <ul class="filter_newsFeed">
+                                <li><input type="checkbox" (click)="applyLoggedInFilter(1)" class="logged_in_filter" name="my_filter" value="1" id="js-filter-all" checked><label for="js-filter-all">All</label></li>
+                                <li><input type="checkbox" (click)="applyLoggedInFilter(2)" class="logged_in_filter" name="my_filter" value="2" id="js-filter-wall"><label for="js-filter-wall">My Wall</label></li>
+                                <li><input type="checkbox" (click)="applyLoggedInFilter(3)" class="logged_in_filter" name="my_filter" value="3" id="js-filter-friend"><label for="js-filter-friend">My Friends</label></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- HOME NEWS SECTION -->
+                        <div class="news-section-all">
+                            <div class="news-sec lazy-c-{{i}}" *ngFor="let number of result;let i = index">
+                                <div class="news-img">
+                                    <img class="big-img" src="{{number['img_url']}}" alt="">
+                                    <!-- <img class="small-img" src="assets/images/left-sidebar/5.png" alt=""> -->
+                                </div>
+                                <div class="news-cont">
+                                    <div class="news-content">
+                                        <h4><a href="javascript:void(0)" (click) = "loadIframe(number['id'])"><span class="new_badge">New</span>{{number['title']}}</a></h4>
+                                        <span class="news-content__timestamp">{{number['published_date']}}</span>
+                                        <p>{{number.content || number.description || number.custom_description}}</p>
+                                        <div class="news-cont__bottom">
+                                            <div class="news-sharing">
+                                                <ul>
+                                                    <li>
+                                                        <a href=""><img src="assets/images/banner/facebook-social-symbol.svg" alt=""></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href=""><img src="assets/images/banner/twitter-logo-silhouette.svg" alt=""></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href=""><img src="assets/images/banner/linkedin-logo.svg" alt=""></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href=""><img src="assets/images/banner/sharethis-logo.svg" alt=""></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="news_topic">
+                                                <ul>
+                                                    <li *ngIf="number.auth == 1 && number.shared_status == 0"><a href="javascript:void(0)" id="js-share-{{number.id}}" (click)="shareOnMyWall(number.id,number.shared_status)" >Share to my wall</a></li>
+                                                    <li *ngIf="number.auth == 1 && number.shared_status == 1"><a href="javascript:void(0)"  (click)="shareOnMyWall(number.id,number.shared_status)" >Remove from my wall</a></li>
+                                                    <li><a href="javascript:void(0)" target="_blank">Source - {{number.source_name}}</a></li>
+                                                    <li><a href="javascript:void(0)" class="news-type top-label">{{number.category_name}}</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="show-more-sec" *ngIf="result <= 0">
+                                No News Feed Available
+                            </div>
+                        </div>
+                        <button type="button" id="js-load-more" (click)="lazyload()" [class.--loading]="isLoading">Load More <span class="glyphicon" [ngClass]="isLoading ? 'glyphicon glyphicon-refresh' : 'glyphicon-menu-down'"></span></button>
+                </div>
+            </div>
+            <!--other side---->
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div class="right-sidenav">
+                <div class="on-other-side">
+                    <h2>On the other side</h2>
+                    <ul class="otherside-sec">
+                        <li *ngFor="let other of other_news">
+                            <div class="othersideBox">
+                                <div class="othersideBox__top">
+                                    <div class="otherside-img">
+                                        <img src="assets/images/right-sidebar/1_small.png" alt="" class="small-pic">
+                                        <img src="{{other.img_url}}" alt="" class="big-pic">
+                                        <p>{{ other.category_name }}</p>
+                                    </div>
+                                    <div class="otherside-content">
+                                        <h4>{{other['title']}}</h4>
+                                        <p>{{ other.custom_description || other.description || other.content }}</p>
+                                    </div>
+                                </div>
+                                <div class="othersideBox__bottom">
+                                    <ul>
+                                        <li><a href="">A1ON</a><span>|</span></li>
+                                        <li><a href="">НОВА МАКЕДОНИЈА</a><span>|</span></li>
+                                        <li><a href="">ФАКТОР</a><span></span></li>
+                                        <li><a href="">More…</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </li>
+                        <!-- <li *ngIf="other_news.length >  0">
+                            <a class="take-me-there" routerLink="/other">take me there <img src="assets/images/door.png"></a>
+                        </li> -->
+                    </ul>
+                    <a *ngIf="other_news.length >  0" class="take-me-there" routerLink="/other">take me there <img src="assets/images/door.png"></a>
+                    <div class="show-more-sec" *ngIf="other_news.length  <= 0">
+                        No News Feed Available
+                    </div>
+                </div>
+                <div class="celebs">
+                    <div class="celebs__top">
+                        <!-- <button class="celebs__tab-btn" [ngClass]="activeCelebsTab == 1 ? '--active' : ''" (click)="handleCelebsTabClick('1')">Social Influencers</button> -->
+                        <button class="celebs__tab-btn" [ngClass]="activeCelebsTab == 2 ? '--active' : ''" (click)="handleCelebsTabClick('2')">Celebrities</button>
+                    </div>
+                    <div class="celebs__content">
+                        <div class="celebs__single">
+                            <div class="celebs__single__left">
+                                <div class="celebs__single__name">Alex M.</div>
+                                <div class="celebs__single__img">
+                                    <img src="assets/images/seleb-1.png">
+                                </div>
+                            </div>
+                            <div class="celebs__single__right">
+                                <div class="celebs__single__title">ELEM will change the filters on their manufacturing</div>
+                                <div class="celebs__single__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>
+                                <div class="celebs__single__footer">
+                                    <button class="celebs__single__view-btn">
+                                        <img src="assets/images/eye.png">
+                                    </button>
+                                    <span class="celebs__single__timestamp">11 minutes ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="celebs__single">
+                            <div class="celebs__single__left">
+                                <div class="celebs__single__name">Kent A.</div>
+                                <div class="celebs__single__img">
+                                    <img src="assets/images/seleb-2.png">
+                                </div>
+                            </div>
+                            <div class="celebs__single__right">
+                                <div class="celebs__single__title">Nimiz will be heading to Athens in Monday</div>
+                                <div class="celebs__single__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>
+                                <div class="celebs__single__footer">
+                                    <button class="celebs__single__view-btn">
+                                        <img src="assets/images/eye.png">
+                                    </button>
+                                    <span class="celebs__single__timestamp">17 minutes ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="celebs__single">
+                            <div class="celebs__single__left">
+                                <div class="celebs__single__name">Kelly R.</div>
+                                <div class="celebs__single__img">
+                                    <img src="assets/images/seleb-3.png">
+                                </div>
+                            </div>
+                            <div class="celebs__single__right">
+                                <div class="celebs__single__title">Jentiloni refuses pre contract with Berlusconi</div>
+                                <div class="celebs__single__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>
+                                <div class="celebs__single__footer">
+                                    <button class="celebs__single__view-btn">
+                                        <img src="assets/images/eye.png">
+                                    </button>
+                                    <span class="celebs__single__timestamp">1 hour ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="celebs__footer">
+                            <a class="celebs__load-more-btn" href="#">
+                                Load More
+                                <img src="assets/images/caret-down.svg">
+                            </a>
+                        </div>
+                    </div> 
+                </div>
+                <!-- <div class="latest-tweets">
+                    <h2>Latest Tweets</h2>
+                    <ul>
+                        <li *ngFor="let tweet of twitter_feed">
+                            <div class="tw_pic">
+                                <img src="{{tweet.user.profile_image_url}}">
+                            </div>
+                            <div class="tw-cont">
+                                <h4>{{tweet.user.name}}</h4>
+                                <p>{{tweet.text}}</p>
+                                <a href="">{{tweet.retweet_count}} Retweets {{tweet.favorite_count}} Favorites</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div> -->
+                <div class="sources sidenavBox" *ngIf="!right_ad;else view_front_ad">
+                    <img class="img-responsive" src="assets/images/adspace.jpg">
+                </div>
+                <ng-template #view_front_ad>
+                    <div class="sources sidenavBox">
+                        <img src="{{right_ad.ad_img_url}}">
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+        </div>
+        <div class="inner-container">
+            <div class="text-center">
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
+                    quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="popup-background" class="sign-up-modal">
+        <app-signup></app-signup>
+    </div>
+</main>
+<footer>
+    <app-footer></app-footer>
+</footer>

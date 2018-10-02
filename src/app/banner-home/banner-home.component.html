@@ -1,0 +1,46 @@
+<div class="banner-home">
+  <div class="container">
+      <flash-messages></flash-messages>
+    <h2>Top News:</h2>
+  </div>
+  <ngx-carousel [inputs]="carouselOne">
+
+    <ngx-item NgxCarouselItem *ngFor="let article of result | async">
+      <div class="carousel-items">
+        <div class="news-sec">
+          <div class="news-img">
+            <img class="big-img" src="{{article['img_url']}}" alt="">
+            <img class="small-img" src="assets/images/left-sidebar/5.png" alt="">
+          </div>
+          <div class="news-cont">
+            <a href="" class="news-type">{{ article['category_name'] ? article['category_name'] : 'politics' }}</a>
+            <div class="news-content">
+              <h4><a href="javascript:void(0)" (click) = "loadIframe(article['id'])"><span href="" class="new_badge">New</span>{{article['title']}}</a></h4>
+              <span class="news-content__timestamp">{{article['published_date'] | amDateFormat: 'DD MMM - H:mm'}}</span>
+              <p [innerHTML]="article.content && article.content.length > 100? (article.content | slice:0:100) + '..' : article.content "></p>
+              <div class="news-cont__bottom">
+                <div class="news-sharing">
+                  <ul>
+                    <li><a href=""><img src="assets/images/banner/facebook-social-symbol.svg" alt=""></a></li>
+                    <li><a href=""><img src="assets/images/banner/twitter-logo-silhouette.svg" alt=""></a></li>
+                    <li><a href=""><img src="assets/images/banner/linkedin-logo.svg" alt=""></a></li>
+                    <li><a href=""><img src="assets/images/banner/sharethis-logo.svg" alt=""></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="news_topic">
+                <ul>
+                  <li><a class="news-type">{{article['category_name']}}</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ngx-item>
+
+
+    <button NgxCarouselPrev class='leftRs'>&lt;</button>
+    <button NgxCarouselNext class='rightRs'>&gt;</button>
+  </ngx-carousel>
+</div>

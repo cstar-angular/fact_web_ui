@@ -1,0 +1,84 @@
+<div class="left-sidenav">
+  <div class="keywords">
+    <h4 data-toggle="collapse" data-target="#keywords">keywords <img src="assets/images/left-sidebar/down.png" alt=""></h4>
+    <div id="keywords" class="collapse in">
+        <div class="form-group">
+          <input type="text"  placeholder="add keywords…" autofocus="" [(ngModel)]="q" (keyup.enter)="search('keyword')">
+        </div>
+        <!-- <ul *ngIf="todos.length > 0">
+          <li *ngFor="let todo of todos" [class.completed]="todo.complete">
+            <a href="">{{todo.title}}</a>
+            <span>
+    				<img src="assets/images/close.png" alt="" (click)="removeTodo(todo)" >
+    			</span>
+          </li>
+        </ul> -->
+    </div>
+  </div>
+  <div class="categories">
+    <h4 data-toggle="collapse" data-target="#categories">categories <img src="assets/images/left-sidebar/down.png" alt=""></h4>
+    <div id="categories" class="collapse in">
+        <ul>
+          <li *ngFor="let key of categories | keys">
+            <input type="checkbox" class="js-query-search-category" id="category-{{categories[key]['id']}}" value="{{categories[key]['id']}}" [(ngModel)] = "categories[key]['selected']">
+            <label for="category-{{categories[key]['id']}}">{{categories[key]['category_name']}}</label>
+          </li>
+        </ul>
+    </div>
+  </div>
+  <div class="sources">
+    <h4 data-toggle="collapse" data-target="#sources">sources <img src="assets/images/left-sidebar/down.png" alt=""></h4>
+    <div id="sources" class="collapse in">
+
+        <ul>
+          <li>
+            <input type="checkbox" id="sitel">
+            <label for="sitel">
+            	<span><img src="assets/images/left-sidebar/1.png" alt="">sitel</span>
+            </label>
+          </li>
+          <li>
+
+            <input type="checkbox" id="skynet">
+             <label for="skynet">
+              <span><img src="assets/images/left-sidebar/2.png" alt="">sky net</span>
+            </label>
+          </li>
+          <li>
+            <input type="checkbox" id="telma">
+            <label for="telma">
+              <span><img src="assets/images/left-sidebar/3.png" alt="">telma</span>
+            </label>
+
+          </li>
+          <li>
+          	<input type="checkbox" id="a1on">
+            <label for="a1on">
+              <span><img src="assets/images/left-sidebar/4.png" alt="">a1on</span>
+            </label>
+          </li>
+          <li>
+            <input type="checkbox" id="channel5">
+            <label for="channel5">
+              <span><img src="assets/images/left-sidebar/5.png" alt="">channel 5</span></label>
+
+          </li>
+          <li>
+          	<input type="checkbox" id="mrt">
+            <label for="mrt">
+              <span><img src="assets/images/left-sidebar/6.png" alt="">mrt</span>
+
+            </label>
+          </li>
+          <li>
+            <input type="checkbox" id="radiomof">
+            <label for="radiomof">
+              <span><img src="assets/images/left-sidebar/7.png" alt="">radio mof</span>
+            </label>
+
+          </li>
+        </ul>
+
+    </div>
+  </div>
+</div>

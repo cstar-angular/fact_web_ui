@@ -1,0 +1,101 @@
+.left-sidenav h4 img {
+    float: right;
+}
+
+.left-sidenav h4 {
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.left-sidenav input {
+    background: rgba(30, 35, 43, 0.04);
+    height:  47px;
+    border:  0;
+    width:  100%;
+    padding:  16px;
+    font-size:  12px;
+    color: rgba(30, 35, 43, 0.2);
+}
+
+.left-sidenav input:focus {
+    outline: none;
+}
+
+.left-sidenav input::placeholder {
+    color: rgba(30, 35, 43, 0.2);
+}
+
+.left-sidenav #keywords ul li a {
+    margin-right: 10px;
+    padding: 5px 10px;
+    display:  inline-block;
+    color:  #1E232B;
+    text-transform:  capitalize;
+}
+
+.left-sidenav #keywords ul li {
+    list-style:  none;
+    display:  inline-block;
+    width:  100%;
+    padding: 0;
+    margin-bottom:  8px;
+    background: rgba(30, 35, 43, 0.04);
+}
+
+.left-sidenav #keywords ul {
+    padding:  0;
+    width:  120px;
+    margin-bottom: 0;
+    display:  inline-block;
+}
+
+.left-sidenav #keywords ul li span {
+    float:  right;
+}
+
+.left-sidenav #keywords ul li:last-child {
+    margin-bottom: 0;
+}
+
+#categories ul li label, #sources ul li label {
+    font-weight: normal;
+}
+
+input[type = "checkbox"]:checked + label {
+    color: #fac134;
+    font-weight: bold !important;
+    background: url("../../assets/images/left-sidebar/check.png") no-repeat scroll right center;
+    padding-right: 30px;
+}
+
+#categories ul li input, #sources ul li input {
+    display:  none;
+}
+
+#categories ul li, #sources ul li {
+    list-style:  none;
+}
+
+#categories ul, #sources ul {
+    padding:  0;
+    margin:  0;
+}
+
+#categories ul li label img, #sources ul li label img {
+    margin-right: 15px;
+    width: 50px;
+}
+
+.left-sidenav {
+    padding-right: 30px;
+    display: inline-block;
+    width: 100%;
+}
+
+
+@media (max-width: 991px) { 
+    .left-sidenav input {
+        padding: 5px 15px;
+    }
+}

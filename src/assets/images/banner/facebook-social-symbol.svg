@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5.793 11.544">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.301;
+      }
+
+      .cls-2 {
+        fill: #090509;
+      }
+    </style>
+  </defs>
+  <g id="facebook-social-symbol" class="cls-1" transform="translate(-121.172)">
+    <g id="Group_2" data-name="Group 2" transform="translate(121.172)">
+      <g id="Group_1" data-name="Group 1" transform="translate(0)">
+        <path id="Path_3" data-name="Path 3" class="cls-2" d="M124.786,3.782l0-1c0-.519.036-.8.779-.8h1.375V0h-1.971c-1.912,0-2.352.988-2.352,2.61l0,1.172h-1.451V5.772h1.451v5.772h2.164V5.772h1.965l.211-1.989Z" transform="translate(-121.172)"/>
+      </g>
+    </g>
+  </g>
+</svg>

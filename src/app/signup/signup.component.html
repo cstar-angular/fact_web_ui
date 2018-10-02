@@ -1,0 +1,193 @@
+<div class="center-top-left">
+    <flash-messages></flash-messages>
+  <div class="popup-background ">
+    <a class="close-popup" href="javascript:void(0)" (click)=updateBxclose()><i class="fa fa-times" aria-hidden="true"></i></a>
+    <div class="login-signup-popup">
+      <ul class="nav nav-pills">
+        <li class="active"><a data-toggle="pill" href="#signin">LOG IN (EXISTING NEW USER)</a></li>
+        <li class=""><a data-toggle="pill" href="#signup">REGISTER NEW USER</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="signin" class="tab-pane fade in active">
+          <div class="loginform">
+            <form action="">
+              <div class="form-group">
+                <label for="email" id="login-email-error">Username / Email Address</label>
+                <input type="email" id="l_email" placeholder="Enter your email" [(ngModel)]="l_username" name="l_username" required>
+                <span class="error"></span>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="l_password" placeholder="Enter your password" [(ngModel)]="l_password" name="l_password" required>
+                <span class="error" id="password-error"></span>
+              </div>
+              <div class="form-group text-right">
+                <a href="" class="forget-pass-link">Forget Password?</a>
+              </div>
+              <button type="submit" (click)="login()" class="btn btn-default">LOGIN</button>
+            </form>
+            <div id="social-login">
+              <div>Or Login With</div>
+              <div>
+                  <a (click)="socialLogin('facebook')" href="javascript:void(0)" ><i class="fa fa-facebook"></i></a>
+                  <a (click)="socialLogin('google')" href="javascript:void(0)"><i class="fa fa-google"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="signup" class="tab-pane fade">
+          <div class="register-form" name="myForm">
+            <form action="">
+              <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label  for="first_name"><span id="first_name_error">First Name</span></label>
+                  <input type="text" id="first_name" [(ngModel)]="first_name" name="first_name">
+                </div>
+                <div class="form-group">
+                  <label for="email">
+                      <span id="email-error">Email Address</span>
+                  </label>
+                  <input type="text" id="email" [(ngModel)]="email" name="email">
+                </div>
+                <div class="form-group dob">
+                  <label  for="dob">
+                    <span id="dob_error">Date Of Birth</span>
+                  </label>
+                  <input type="date"  id="dob" [(ngModel)]="dob" name="dob">
+                </div>
+                <div class="form-group">
+                  <label  for="username">
+                    <span id="username-error">Choose Username</span>
+                  </label>
+                  <input type="text" id="username" [(ngModel)]="username" name="username">
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label for="last_name" >
+                    <span id="last_name_error">Last Name</span>
+                  </label>
+                  <input type="text" id="last_name" [(ngModel)]="last_name" name="last_name">
+                </div>
+                <div class="form-group">
+                  <div data-toggle="buttons" class="gender-selection">
+                    <label>
+                      <span id="gender-error">Gender</span>
+                      <span id="gender-error" class="error" data-toggle="tooltip" title="Invalid gender"></span>
+                    </label>
+                    <div class="gender-labels">
+                      <label  class="btn btn-gender btn-default active">
+
+                        <input type="radio" id="male" name="gender"  click="updateGender('MALE')">
+                        <span class="btn-gender__txt">male</span>
+                        <div class="gender-img">
+                          <svg version="1.1" width="30px" height="30px" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30.566 45.348" style="enable-background:new 0 0 487.678 487.678;" xml:space="preserve">
+                            <g>
+                              <g>
+                                <path style="fill:#010002;" d="M113.349,36.743a.664.664,0,0,0-.664.664v6.245a.367.367,0,0,1-.367.367h-3.571V30.938a.664.664,0,0,0-1.329,0V44.019h-7.191l2.085-2.294a1.191,1.191,0,0,0,.287-.955l0-.02-1.986-11.733.535-.805a1.507,1.507,0,0,0,.951.412,1.163,1.163,0,0,0,1.041-.644h0l2.095-4.2,4.772,1.848a4.6,4.6,0,0,1,2.679,4.184v4.493a.664.664,0,0,0,1.329,0V29.814a5.929,5.929,0,0,0-3.506-5.414l-.013-.005-7.942-3.076V19.456a6.224,6.224,0,0,0,2.356-4.094,2.875,2.875,0,0,0,1.689-.689,2.82,2.82,0,0,0,.294-3.979V8.233a8.233,8.233,0,1,0-16.466,0v2.525a2.667,2.667,0,0,0-.685,1.778,2.815,2.815,0,0,0,.98,2.137,2.874,2.874,0,0,0,1.688.689,6.159,6.159,0,0,0,2.49,4.193v1.764l-7.933,3.076-.012,0a5.928,5.928,0,0,0-3.506,5.414V43.652a1.7,1.7,0,0,0,1.7,1.7h6.329a.664.664,0,1,0,0-1.329H90.042V30.938a.664.664,0,1,0-1.329,0V44.019H85.143a.367.367,0,0,1-.367-.367V29.814a4.6,4.6,0,0,1,2.679-4.184l4.768-1.848,2.095,4.2a1.163,1.163,0,0,0,1.041.644,1.505,1.505,0,0,0,.951-.412l.535.805L94.859,40.75l0,.02a1.191,1.191,0,0,0,.287.956l2.085,2.294H94.572a.664.664,0,1,0,0,1.329h17.746a1.7,1.7,0,0,0,1.7-1.7V37.407A.665.665,0,0,0,113.349,36.743ZM103.989,23.3l-1.953,3.914-2.349-1.668,2.412-2.977Zm-3.926,4.142-.506.762H97.9l-.506-.762,1.335-.948Zm-3.835-5.909V20.29a6.74,6.74,0,0,0,2.512.476,6.236,6.236,0,0,0,2.485-.518v1.29l-2.5,3.081Zm10.021-9a1.488,1.488,0,0,1-.517,1.13,1.547,1.547,0,0,1-.767.353V11.054A1.5,1.5,0,0,1,106.248,12.536ZM92.354,14.019a1.5,1.5,0,0,1-1.284-1.483,1.578,1.578,0,0,1,1.284-1.449Zm.036-4.285a3.284,3.284,0,0,0-.635.143V8.233a6.9,6.9,0,1,1,13.808,0v1.6a2.953,2.953,0,0,0-.6-.116c0-.641.006-.517-2.091-2.772a1.182,1.182,0,0,0-1.509-.184,12.807,12.807,0,0,1-7.742,2.084A1.181,1.181,0,0,0,92.389,9.734Zm1.293,4.808V10.179a14.2,14.2,0,0,0,8.3-2.239c.962,1.033,1.482,1.574,1.65,1.78v4.822a4.977,4.977,0,0,1-9.953,0ZM95.42,27.214,93.467,23.3l1.886-.73,2.413,2.978Zm.762,13.679L98.1,29.533h1.246l1.923,11.36-2.546,2.8Z" transform="translate(-83.447)" />
+                              </g>
+                            </g>
+                          </svg>
+                        </div>
+                      </label>
+                      <label class="btn btn-gender btn-default">
+                        <span class="btn-gender__txt">female</span>
+                        <input type="radio" id="female" name="gender"  click="updateGender('FEMALE')">
+                        <div class="gender-img">
+                          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 32.173 47.999" style="enable-background:new 0 0 537.6 537.6;" xml:space="preserve">
+                            <g id="employee" class="cls-1" transform="translate(-84.406)">
+                                <g id="Group_96" data-name="Group 96" transform="translate(96.281 32.11)">
+                                  <g id="Group_95" data-name="Group 95" transform="translate(0)">
+                                    <path id="Path_213" style="fill:#010002;" data-name="Path 213" d="M230.673,350.269a.7.7,0,0,0-.7.7v5.644a.382.382,0,0,1-.382.382h-3.754V343.219a.7.7,0,0,0-1.406,0V357h-8.44v-9.712a.7.7,0,0,0-1.406,0V357h-2.8a.7.7,0,1,0,0,1.406h17.807a1.79,1.79,0,0,0,1.788-1.788v-5.644A.7.7,0,0,0,230.673,350.269Z" transform="translate(-211.078 -342.516)"/>
+                                  </g>
+                                </g>
+                                <g id="Group_98" data-name="Group 98" transform="translate(84.406)">
+                                  <g id="Group_97" data-name="Group 97" transform="translate(0)">
+                                    <path id="Path_214" style="fill:#010002;" data-name="Path 214" d="M112.887,25.947l-.013-.005-8.355-3.236v-.487h3.073a1.79,1.79,0,0,0,1.788-1.788v-5.1a2.971,2.971,0,0,0,0-3.558V8.888a8.887,8.887,0,1,0-17.775,0V20.431a1.79,1.79,0,0,0,1.788,1.788h3.063v.487l-8.346,3.235-.013.005a6.243,6.243,0,0,0-3.692,5.7V46.211A1.79,1.79,0,0,0,86.194,48H93.7a.7.7,0,0,0,0-1.406H91.354V32.813a.7.7,0,0,0-1.406,0V46.593H86.194a.382.382,0,0,1-.382-.382V31.648a4.84,4.84,0,0,1,2.816-4.4l5.014-1.944,2.2,4.415h0a1.225,1.225,0,0,0,.684.607,14.891,14.891,0,0,0-1.357,2.791,1.123,1.123,0,0,0,.631,1.424l2.054.843a1.124,1.124,0,0,0,1.525-.8,12.2,12.2,0,0,1,1.11-3.026,12.2,12.2,0,0,1,1.11,3.026,1.124,1.124,0,0,0,1.525.8l2.055-.843a1.123,1.123,0,0,0,.631-1.424,14.89,14.89,0,0,0-1.358-2.792,1.226,1.226,0,0,0,.68-.606h0l2.2-4.415,5.019,1.944a4.876,4.876,0,0,1,2.816,4.4v5.637a.7.7,0,0,0,1.406,0V31.648A6.242,6.242,0,0,0,112.887,25.947Zm-4.913-5.516a.382.382,0,0,1-.382.382h-2.964a6.559,6.559,0,0,0,2.443-4.274,3.278,3.278,0,0,0,.9-.175v4.067Zm.592-6.877a1.587,1.587,0,0,1-1.434,1.571V11.984A1.587,1.587,0,0,1,108.565,13.554ZM93.394,20.813a.382.382,0,0,1-.382-.382V8.888a7.481,7.481,0,0,1,14.963,0v1.857a3.364,3.364,0,0,0-.852-.172,1.243,1.243,0,0,0-.874-1.035h0A7.769,7.769,0,0,1,103.017,7.5a1.246,1.246,0,0,0-1.74-.047,18.294,18.294,0,0,1-6.609,4.88,1.251,1.251,0,0,0-.814,1.169v2.165a6.516,6.516,0,0,0,2.505,5.148H93.394Zm1.866-5.148V13.611c.4-.153.8-.328,1.178-.519A20.265,20.265,0,0,0,102.129,8.6a9.226,9.226,0,0,0,3.439,2.194l.157.053v4.818a5.233,5.233,0,0,1-10.465,0Zm7.853,6.044v1.23l-2.623,3.237-2.627-3.243V21.69a7.077,7.077,0,0,0,2.714.53A6.55,6.55,0,0,0,103.113,21.709ZM94.96,24.8l1.978-.766,2.534,3.128-.025.018-2.437,1.731Zm3.126,9.163-1.5-.614A12.244,12.244,0,0,1,98.266,30.3a3.03,3.03,0,0,0,.942.687A13.68,13.68,0,0,0,98.086,33.959Zm2.4-4.1a1.626,1.626,0,0,1-1.359-.737l1.361-.966,1.358.964A1.625,1.625,0,0,1,100.488,29.864Zm2.412,4.1a13.69,13.69,0,0,0-1.124-2.977,3.034,3.034,0,0,0,.94-.689,12.241,12.241,0,0,1,1.681,3.053Zm1.07-5.053-2.464-1.75,2.534-3.128,1.981.767Z" transform="translate(-84.406)"/>
+                                  </g>
+                                </g>
+                              </g>
+                          </svg>
+                        </div>
+                      </label>
+                      <label class="btn btn-gender btn-default">
+                        <span class="btn-gender__txt">other</span>
+                        <input type="radio" id="other" name="gender"  click="updateGender('OTHER')">
+                        <div class="gender-img">
+                          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve">
+                            <g>
+                              <g id="Ellipse_2_copy_3">
+                                <g>
+                                  <path d="M55.636,250.364C24.907,250.364,0,275.27,0,306c0,30.73,24.907,55.636,55.636,55.636S111.273,336.73,111.273,306
+          C111.273,275.27,86.366,250.364,55.636,250.364z M315.273,250.364c-30.73,0-55.636,24.907-55.636,55.636
+          c0,30.729,24.907,55.636,55.636,55.636c30.729,0,55.636-24.905,55.636-55.636C370.909,275.27,346.003,250.364,315.273,250.364z
+          M556.364,250.364c-30.73,0-55.636,24.907-55.636,55.636c0,30.729,24.906,55.636,55.636,55.636
+          C587.093,361.636,612,336.73,612,306C612,275.27,587.093,250.364,556.364,250.364z" />
+                                </g>
+                              </g>
+                            </g>
+                          </svg>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="form-group">
+                  <label for="phone" >
+                    <span id="phone_error">Telephone Number(For SMS Verification)</span>
+                  </label>
+                  <div class="telephone-no">
+                    <div id="countrycode">
+                      <select name="" id="">
+                        <option value="">+91</option>
+                        <option value="">+1</option>
+                      </select>
+                    </div>
+                    <input type="text" id="phone" [(ngModel)]="phone" name="phone">
+                  </div>
+                </div> -->
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 p-l-r-0">
+                  <div class="form-group">
+                    <label for="password" >
+                      <span id="password-error">Set Password</span>
+                    </label>
+                    <input type="password" id="password" [(ngModel)]="password" name="password">
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 p-r-0">
+                  <div class="form-group">
+                    <label  for="confirm_password">
+                      <span id="confirm-password-error">Repeat Password</span>
+                    </label>
+                    <input type="password" id="confirm_password" [(ngModel)]="confirm_password" name="confirm_password">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group  col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="terms-condition">
+                <input type="checkbox" id="terms" [(ngModel)]="terms" name="terms" (change)="updateTerms()">
+                <label for="terms" id=" checkbox-custom">
+                  <span class="error" id="terms-conditions-error"></span>
+                </label>
+                <label>I agree to the terms and conditions</label>
+              </div>
+            </div>
+
+            <div class="form-group text-center col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <button type="submit" id="js-register-button" class="btn btn-default" (click)="register()">REGISTER</button>
+            </div>
+            </form>
+          </div>
+          <div id="social-login" class="register_social-login">
+            <div>Or Login With</div>
+            <div>
+                <a (click)="socialLogin('facebook')" href="javascript:void(0)" ><i class="fa fa-facebook"></i></a>
+                <a (click)="socialLogin('google')" href="javascript:void(0)"><i class="fa fa-google"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <flash-messages></flash-messages> -->
+  </div>
+</div>

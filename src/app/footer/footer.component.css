@@ -1,0 +1,32 @@
+.footer {
+    display:  inline-block;
+    width:  100%;
+    padding:  20px 0;
+    background: #fac134;
+    margin-bottom: -5px;
+}
+
+:host.--other-news-footer .footer {
+    background-color: #aaa;
+}
+
+.footer p {
+    color:  #fff;
+    margin: 0;
+}
+
+
+@media (max-width: 1199px) {
+
+}
+
+@media (max-width: 991px) {
+	
+}
+
+@media (max-width: 767px) {
+	.footer p {
+        font-size: 12px;
+        text-align: center;
+    }
+}

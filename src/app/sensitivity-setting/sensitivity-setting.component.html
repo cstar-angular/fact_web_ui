@@ -1,0 +1,144 @@
+ <header>
+    <app-header class="headerbg"></app-header>
+</header>
+<main class="mainBlock">
+	<div class="settings-head">
+		<h2>Settings</h2>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="bannerHeading">
+					<h2>Sensitivity setting</h2>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="RangeBlock">
+					<div class="rangeBlock__head">
+						<div class="rangeBlock__head__img">
+							<img src="assets/images/book.svg">
+						</div>
+						<h4>By Topic</h4>
+						<button class="rangeBlock__submit" [class.--hasChanges]="categoriesHasChanges" (click)="categoriesSubmitClick()">Save <span>changes</span></button>
+					</div>
+					<ul class="rangeList" *ngIf="categories">
+						<li *ngFor="let cat of categories">
+							<div class="rangeBox">
+								<div class="rangeBxHeader">
+									<h5>{{ cat.category.category_name }}</h5>
+									 <a class="rangCloseBtn"> <img src="assets/images/svg/cancel.svg"></a>
+								</div>
+								<button class="progressSubmitButton" style="position:absolute;left:-9999px" (click)="catProgressBoxChange(cat.id)"></button>
+								<div id="panel" class="proggRange">
+									<div *ngIf="!isMobile" class="resiz progressBox" data-id="{{cat.id}}" [style.height]="cat.sensitivity_percents + '%'" data-height="">
+										<h6>{{cat.sensitivity_percents}}%</h6>
+									</div>
+									<div *ngIf="isMobile" class="resiz progressBox" data-id="{{cat.id}}" [style.width]="cat.sensitivity_percents + '%'" data-height="">
+										<h6>{{cat.sensitivity_percents}}%</h6>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="RangeBlock">
+					<div class="rangeBlock__head">
+						<div class="rangeBlock__head__img">
+							<img src="assets/images/satellite.svg">
+						</div>
+						<h4>By Source</h4>
+						<button class="rangeBlock__submit" [class.--hasChanges]="topicsHasChanges" (click)="topicsSubmitClick()">Save <span>changes</span></button>
+					</div>
+					<ul class="rangeList" *ngIf="sources">
+						<li *ngFor="let source of sources">
+							<div class="rangeBox">
+								<div class="rangeBxHeader">
+									<h5>{{ source.source.source }}</h5>
+									<a class="rangCloseBtn"> <img src="assets/images/svg/cancel.svg"></a>
+								</div>
+								<button class="progressSubmitButton" style="position:absolute;left:-9999px" (click)="sourceProgressBoxChange(source.id)"></button>
+								<div id="panel" class="proggRange">
+									<div *ngIf="!isMobile" class="resiz progressBox" data-id="{{source.id}}" [style.height]="source.sensitivity_percents + '%'" data-height="">
+										<h6>{{ source.sensitivity_percents }}%</h6>
+									</div>
+									<div *ngIf="isMobile" class="resiz progressBox" data-id="{{source.id}}" [style.width]="source.sensitivity_percents + '%'" data-height="">
+										<h6>{{source.sensitivity_percents}}%</h6>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="RangeBlock --account">
+					<!-- <h4>ACCOUNT INFO</h4> -->
+					<div class="bannerHeading">
+						<h2>Account Info</h2>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-6">
+
+							<div class="changeBlock">
+								<h5>Change Email</h5>
+
+								<form class="frmStyle1">
+								  <div class="form-group">
+								    <input type="email" class="form-control frmCntrl" id="primaryMail" placeholder="illijatp@gmail.com" style="    padding-right: 100px;">
+								    <span class="inplable"> Primary email</span>
+								  </div>
+								  <div class="form-group">
+								    <input type="email" class="form-control frmCntrl" id="newMail" placeholder="Email">
+								  </div>
+								  <button type="submit" class="btn btn-default btn_theme">Save Changes</button>
+								</form>
+
+							</div>
+
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="changeBlock">
+								<h5>Change Password</h5>
+
+								<form class="frmStyle1">
+								  <div class="form-group">
+								    <input type="password" class="form-control frmCntrl" id="oldPwd" placeholder="Old password" >
+								  </div>
+								  <div class="form-group">
+								    <input type="password" class="form-control frmCntrl" id="newPwd" placeholder="New password">
+								  </div>
+								  <div class="form-group">
+								    <input type="password" class="form-control frmCntrl" id="confirmPwd" placeholder="Confirm password">
+								  </div>
+								  <button type="submit" class="btn btn-default btn_theme">Save Changes</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+
+	<div id="popup-background" class="modal fade" role="dialog">
+        <app-signup></app-signup>
+    </div>
+</main>
+<footer>
+    <app-footer></app-footer>
+</footer>

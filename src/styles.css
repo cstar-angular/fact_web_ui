@@ -1,0 +1,258 @@
+/* You can add global styles to this file, and also import other style files */
+
+.ngxcarouselPointDefault.ngxcarouselPointDefault ul.ngxcarouselPoint.ngxcarouselPoint.ngxcarouselPoint {
+    padding: 0;
+}
+
+.ngxcarouselPoint li {
+    background: #ffffff !important;
+    transform: scale(1) !important;
+    opacity: 0.4;
+    width: 12px;
+    height: 12px;
+    border-radius: 0 !important;
+}
+
+.otherSide__carousel .ngxcarouselPoint li {
+    background: #626262 !important;
+}
+
+.ngxcarouselPoint li.active {
+    opacity: 1;
+}
+
+header {
+    z-index: 10;
+}
+
+.banner-home {
+    padding-top: 90px;
+    padding-bottom: 20px;
+    display: inline-block;
+    width: 100%;
+    /* background: #fac134; */
+    /* url("assets/images/banner/banner-bg.png") no-repeat scroll center center */
+    background-image: url(../src/assets/images/f-bg.png);
+    background-position: bottom left;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 767px) {
+    .banner-home {
+        padding-top: 40px;
+    }
+}
+
+.title-sec span[data-toggle] {
+    background: url("assets/images/enable.png") no-repeat scroll center center;
+    width: 32px;
+    height: 32px;
+}
+
+.p-0 {
+    padding: 0;
+}
+
+
+.blue-color {
+    color: #4a8fff !important;
+}
+
+.add-sticky .left-sidenav {
+    position:  fixed;
+    left: 90px;
+    top: 35px;
+    width: 200px !important;
+}
+
+.add-sticky .right-sidenav {
+    position: fixed;
+    right: 90px;
+    z-index: 10;
+    top: 35px;
+    width: 315px !important;
+}
+
+.news-type {
+    background: #03b146 !important;
+}
+
+@media (min-width: 768px) {
+    .ngxcarousel-items {
+        padding-left: 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .ngxcarousel-items {
+        padding-left: calc(50% - 480px + 20px);
+    }
+}
+
+@media (min-width: 1200px) {
+    .ngxcarousel-items {
+        padding-left: calc(50% - 640px + 20px);
+    }
+}
+
+@media (min-width: 1400px) {
+    .ngxcarousel-items {
+        padding-left: calc(50% - 680px + 20px);
+    }
+}
+
+@media (min-width: 1550px) {
+    .ngxcarousel-items {
+        padding-left: calc(50% - 720px + 20px);
+    }
+}
+
+@media (min-width: 1650px) {
+    .ngxcarousel-items {
+        padding-left: calc(50% - 775px + 20px);
+    }
+}
+
+.ngxcarousel-items.ngxcarousel-items.ngxcarousel-items > .item.item.item {
+    width: 40%;
+}
+
+@media (max-width: 767px) {
+    .ngxcarousel-items {
+        padding: 0;
+    }
+    .ngxcarousel-items.ngxcarousel-items.ngxcarousel-items > .item.item.item {
+        width: 100%;
+    }
+}
+
+.sign-up-modal {
+    position: absolute;
+    top: 0;
+    left:  0;
+    width:  100%;
+    height: 100%;
+    background:  rgba(0,0,0,.3);
+    opacity: 0;
+    z-index: 10;
+    display: block;
+    pointer-events: none;
+    transition: all .15s ease-out;
+}
+
+.sign-up-modal.login-form-active {
+    pointer-events: all;
+    opacity: 1;
+}
+
+/*error style*/
+.error {
+    color:  red;
+}
+.input_error {
+    border: 1px solid red !important;
+    color: red !important;
+}
+.telephone_input_error {
+    border-bottom: 3px solid red !important;
+}
+
+/*common*/
+:focus, :hover {
+    outline-color: transparent !important;
+    text-decoration: none !important;
+}
+
+body {
+    position: relative;
+}
+
+/* Settings page sliders overrides */
+.RangeBlock .ui-resizable-handle {
+    height: 20px;
+    background: #fff;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border: 1px solid #fac123;
+    cursor: grab;
+}
+
+.RangeBlock .ui-resizable-s {
+    width: 100%;
+    top: 100%;
+    left: 0;
+    height: 20px;
+    background: #fac123;
+    border: 1px solid #fac123;
+}
+
+.RangeBlock .ui-resizable-resizing .ui-resizable-handle {
+    background-color: #fff;
+}
+
+.RangeBlock .ui-resizable-resizing .ui-resizable-handle::before,
+.RangeBlock .ui-resizable-resizing .ui-resizable-handle::after {
+    background: #fac123;
+}
+
+.RangeBlock .ui-resizable-handle:hover {
+    opacity: .8;
+}
+
+.RangeBlock .ui-resizable-handle::after {
+    content: "";
+    height: 2px;
+    width: 16px;
+    background: #fff;
+    position: absolute;
+    top: 5px;
+    border-radius: 2px;
+    left: calc(50% - 8px);
+}
+
+.RangeBlock .ui-resizable-handle::before {
+    content: "";
+    height: 2px;
+    width: 16px;
+    background: #fff;
+    position: absolute;
+    top: 11px;
+    left: calc(50% - 8px);
+    border-radius: 2px;
+}
+
+@media (max-width: 992px) {
+    .RangeBlock .ui-resizable-handle {
+        right: -20px;
+        width: 20px;
+        height: 100%;
+        background: #fac123;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 3px;
+        border-top-right-radius: 3px;
+        border: 1px solid #fac123;
+        cursor: grab;
+    }
+
+    .RangeBlock .ui-resizable-handle::after {
+        content: "";
+        width: 2px;
+        height: 16px;
+        background: #fff;
+        position: absolute;
+        left: 5px;
+        border-radius: 2px;
+        top: calc(50% - 8px);
+    }
+    
+    .RangeBlock .ui-resizable-handle::before {
+        content: "";
+        width: 2px;
+        height: 16px;
+        background: #fff;
+        position: absolute;
+        left: 11px;
+        top: calc(50% - 8px);
+        border-radius: 2px;
+    }
+}

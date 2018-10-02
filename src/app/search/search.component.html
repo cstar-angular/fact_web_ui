@@ -1,0 +1,229 @@
+<header>
+    <nav>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pull-left p-0">
+            <div class="logo col-lg-4 col-md-4 col-sm-4 col-xs-12 p-0">
+                <a [routerLink]="['']" class="header-home-link">
+                    <img src="assets/images/logo/logo_wht.svg" width="120">
+                </a>
+            </div>
+            <div class="header_search col-lg-8 col-md-8 col-sm-8 col-xs-12 p-0">
+                <form action="">
+                    <div class="form-group">
+                        <input type="text" (keyup.enter)="search()" id = "site-search" placeholder="SEARCH ( iex. “Macedonian national handball team” )">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pull-right p-0 text-right">
+            <div class="social-links">
+                <ul>
+                    <li>
+                        <a href=""><img src="assets/images/banner/facebook-social-symbol-white.svg" style="height:17px"></a>
+                    </li>
+                    <li>
+                        <a href=""><img src="assets/images/banner/twitter-logo-silhouette-white.svg" alt=""></a>
+                    </li>
+                    <li>
+                        <a href=""><img src="assets/images/banner/linkedin-logo-white.svg" style="height:18px"></a>
+                    </li>
+                    <li>
+                        <a href=""><img src="assets/images/banner/sharethis-logo-white.svg" alt=""></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="profile">
+                <ul>
+                    <!-- <li class="profile-menu" *ngIf="auth; else loggedOut"> -->
+                    <li class="profile-menu" *ngIf="auth > 0; else loggedOut">
+                        <a class="profile-pic" (click)="showSubmenu = !showSubmenu">
+                            <img src="{{result.image}}" alt="">
+                            <span>{{ result.name }}</span>
+                        </a>
+                        <div class="profile_submenu" [ngClass]="{'expanded' : showSubmenu}">
+                            <ul>
+                                <li>
+                                    <a [routerLink]="['/profile']">
+                                        <img src="assets/images/user.png" alt="">
+                                        <span>My Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a [routerLink]="['/sensitivity-setting']">
+                                        <img src="assets/images/settings.png">
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" (click)="getLogoutProfile()">
+                                        <img src="assets/images/logout.png" alt="">
+                                        <span>Log out</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <ng-template #loggedOut>
+                        <li class="before-login">
+                            <a href="javascript: void(0)" (click)="updateBxopen()">Register / Login</a>
+                        </li>
+                    </ng-template>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+<main>
+  <div class="page-content page-content-search">
+    <div class="container">
+      <div class="search-result">
+        <h4>Showing Search Results for: <span class="searched-word">{{q}}</span> {{total_results}} Results ( In Total )</h4>
+        <a class="search-close" (click)="handleCloseBtnClick()">
+            <span>Close Search Results</span>
+            <img src="assets/images/close-1.png" />
+        </a>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-result-users" *ngIf="users.length">
+          <div class="news-sec-title">
+              <h2>Users / Media Outlets</h2>
+          </div>
+        <div class="following">
+          <ul class="following-peoples">
+            <li *ngFor="let user of users;let i = index;">
+              <a href="">
+                <div class="profile-pic-s   ec">
+                <img src="{{user.image}}" alt="">
+                </div>
+                  <span>{{user.username}}</span>
+                </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="mobile-tabs">
+          <div class="mobile-tabs__content">
+              <button class="mobile-tab" (click)="tabClick(0)" [class.active]="mobileTabVisible == 0">In Titles</button>
+              <button class="mobile-tab" (click)="tabClick(1)" [class.active]="mobileTabVisible == 1">In Text</button>
+          </div>
+      </div>
+      <div class="search__row">
+          <div class="search__col" [class.tab-visible]="mobileTabVisible == 0">
+              <div class="home-mainsection">
+                <div class="news-sec-title">
+                  <div class="title-filter-sec">
+                    <h2>In Titles</h2>
+                    <span>{{total_title}} Results</span>
+                  </div>
+                  <div class="filter-sec">
+                    <span>Filter By :</span>
+                    <ul>
+                      <li><a id="js-title-all" [class.active]="activeFilterBy == 'tile'" (click)="filterSearch('tile')">All News</a> <span>|</span></li>
+                      <li><a id="js-title-sort" [class.active]="activeFilterBy == 'recent-title'" (click)="filterSearch('recent-title')">Recent</a><span>|</span></li>
+                      <li><a id="js-title-source" [class.active]="activeFilterBy == 'source-title'" (click)="filterSearch('source-title')">By Source</a><span>|</span></li>
+                      <li><a id="js-title-category" [class.active]="activeFilterBy == 'category-title'" (click)="filterSearch('category-title')">By Category</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="news-section-all" *ngIf="title">
+                  <div class="news-sec" *ngFor="let number of title">
+                    <div class="news-img">
+                      <img class="big-img" src="{{number['img_url']}}" alt="">
+                      <img class="small-img" src="assets/images/left-sidebar/5.png" alt="">
+                    </div>
+                    <div class="news-cont">
+                      <a href="" class="news-type">politics</a>
+                      <div class="news-content">
+                        <h4><a href="javascript:void(0)" (click) = "loadIframe(number['id'])"><span class="new_badge">New</span>{{number['title']}}</a></h4>
+                        <span class="news-content__timestamp">{{number['published_date']}}</span>
+                        <p [innerHTML]="(number['content'].length>100)? (number['content'] | slice:0:100)+'..':(number['content']) "></p>
+                        <div class="news-cont__bottom">
+                            <div class="news-sharing">
+                                <ul>
+                                    <li><a href=""><img src="assets/images/banner/facebook-social-symbol.svg" alt=""></a></li>
+                                    <li><a href=""><img src="assets/images/banner/twitter-logo-silhouette.svg" alt=""></a></li>
+                                    <li><a href=""><img src="assets/images/banner/linkedin-logo.svg" alt=""></a></li>
+                                    <li><a href=""><img src="assets/images/banner/sharethis-logo.svg" alt=""></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="news_topic">
+                            <ul>
+                                <li><a class="news-type">{{number.category_name}}</a></li>
+                            </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="title.length <= 0">
+                      No title found
+                  </div>
+              </div>
+              </div>
+    
+          </div>
+          <div class="search__col" [class.tab-visible]="mobileTabVisible == 1">
+              <div class="home-mainsection">
+                <div class="news-sec-title">
+                  <div class="title-filter-sec">
+                    <h2>In Text</h2>
+                    <span>{{total_content}} Results</span>
+                  </div>
+                  <div class="filter-sec">
+                    <span>Filter By :</span>
+                    <ul>
+                        <li><a id="js-content-all" [class.active]="activeFilterBy == 'all'" (click)="filterSearch('all')">All News</a><span>|</span></li>
+                        <li><a id="js-content-sort" [class.active]="activeFilterBy == 'recent-content'" (click)="filterSearch('recent-content')">Recent</a> <span>|</span></li>
+                        <li><a id="js-content-source" [class.active]="activeFilterBy == 'source-content'" (click)="filterSearch('source-content')">By Source</a> <span>|</span></li>
+                        <li><a id="js-content-category" [class.active]="activeFilterBy == 'category-content'" (click)="filterSearch('category-content')">By Category</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="news-section-all" *ngIf="content">
+                  <div class="news-sec" *ngFor="let number of content">
+                    <div class="news-img">
+                      <img class="big-img" src="{{number['img_url']}}" alt="">
+                      <img class="small-img" src="assets/images/left-sidebar/5.png" alt="">
+                    </div>
+                    <div class="news-cont">
+                      <a href="" class="news-type">politics</a>
+                      <div class="news-content">
+                        <h4><a href="javascript:void(0)" (click) = "loadIframe(number['id'])"><span class="new_badge">New</span>{{number['title']}}</a></h4>
+                        <span class="news-content__timestamp">{{number['published_date']}}</span>
+                        <p [innerHTML]="(number['content'].length>100)? (number['content'] | slice:0:100)+'..':(number['content']) "></p>
+                        <div class="news-cont__bottom">
+                            <div class="news-sharing">
+                                <ul>
+                                    <li><a href=""><img src="assets/images/banner/facebook-social-symbol.svg" alt=""></a></li>
+                                    <li><a href=""><img src="assets/images/banner/twitter-logo-silhouette.svg" alt=""></a></li>
+                                    <li><a href=""><img src="assets/images/banner/linkedin-logo.svg" alt=""></a></li>
+                                    <li><a href=""><img src="assets/images/banner/sharethis-logo.svg" alt=""></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="news_topic">
+                            <ul>
+                                <li><a class="news-type">{{number.category_name}}</a></li>
+                            </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="content.length <= 0">
+                      No content found
+                  </div>
+              </div>
+              </div>
+    
+          </div>
+      </div>
+    </div>
+    <!-- <div class="inner-container">
+      <div class="text-center">
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+      </div>
+    </div> -->
+  </div>
+</main>
+<footer>
+  <app-footer></app-footer>
+</footer>

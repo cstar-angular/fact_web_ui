@@ -1,0 +1,208 @@
+header {
+    /*background: rgba(162, 162, 162, 0.16);*/
+    background: rgba(162, 162, 162, 0.16);
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+nav > div:nth-child(2) {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.profile ul li a {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.profile > ul {
+    display: flex;
+    align-items: center;
+}
+
+.profile ul li a.profile-pic span {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 18px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.profile_submenu.profile_submenu {
+    display: none;
+}
+
+.profile_submenu.expanded {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background: #ffffff;
+    min-width: 170px;
+    padding: 10px;
+    z-index: 10;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.2);
+}
+
+.profile_submenu.expanded li {
+    display: block;
+}
+
+.profile-menu {
+    position: relative;
+}
+
+.profile_submenu.expanded li a {
+    padding: 10px 15px;
+    width: 100%;
+    border-radius: 10px;
+    color: #FAC134;
+    text-decoration: none;
+}
+
+.profile_submenu.expanded li:hover a {
+    background: rgba(197, 197, 197, 0.12);
+}
+
+.profile_submenu.expanded li a span {
+    margin-left: 12px;
+}
+
+.profile ul li a.profile-pic img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    vertical-align: middle;
+    object-fit: cover;
+}
+
+.profile ul li.before-login a {
+    color: #ffffff;
+    padding: 0 30px;
+    height: 40px;
+    line-height: 36px;
+    background: transparent;
+    border: 2px solid #fff;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all .2s ease-out;
+}
+
+.profile ul li.before-login a:hover {
+    background-color: rgba(255,255,255,.15);
+}
+
+.profile ul li.before-login {
+    vertical-align: middle;
+    margin-left: 25px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.social-links ul {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 0;
+    margin: 0;
+}
+
+.social-links ul li {
+    display: inline-block;
+}
+.social-links ul li a {
+    padding: 18px 12px;
+    display: block;
+}
+
+.social-links ul a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 15px;
+}
+
+.social-links a img {
+    height: 16px;
+}
+
+.social-links {
+    display: inline-block;
+}
+
+@media (max-width: 1199px) { }
+
+@media (max-width: 991px) {
+    .profile {
+        padding: 0px;
+    }
+    .profile ul li.before-login a {
+        /* width: 155px;
+        padding: 16px; */
+    }
+}
+
+@media (max-width: 767px) {
+    header {
+        position: relative; 
+        margin-bottom: -5px;
+        background: rgb(250, 193, 52);
+    }
+    nav > * {
+        background-color: #FAC134;
+    }
+    :host.--other-news-header nav > * {
+        background-color: #999;
+    }
+    nav > div:nth-child(2) {
+        justify-content: center;
+        background: linear-gradient(to bottom left, #E1AD2E, #fddb86);
+    }
+    :host.--other-news-header nav > * {
+        background: linear-gradient(to bottom left, #777, #ccc);
+    }
+    /* .header_search .form-group input {
+        padding: 5px 5px 5px 40px;
+        height: 60px;
+        background-size: 15px 15px;
+        width: 400px;
+        background-position-x: 10px;
+        margin: 0 auto;
+        display: block;
+    } */
+    .social-signupbtn {
+        text-align: center;
+    }
+    .profile ul li.before-login {
+        margin-left: 0;
+    }
+    .profile ul li.before-login a {
+        padding: 0 15px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    .social-links ul a {
+        padding: 0 8px;
+    }
+}
+
+@media (max-width: 512px) {
+    /* .header_search .form-group input { */
+        /* width: 100%;
+        margin: 10px auto; */
+    /* } */
+}
+
+

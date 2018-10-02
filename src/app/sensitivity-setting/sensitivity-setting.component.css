@@ -1,0 +1,441 @@
+.headerbg{
+    background-color: rgba(162,162,162,.16);
+    float: left;
+    width: 100%;
+}
+
+.mainBlock{
+    width: 100%;
+}
+
+.settings-head {
+    padding: 70px 0 20px;
+    background-color: #fac123;
+}
+
+.settings-head h2 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: #111;
+}
+
+.bannerHeading h2 {
+    padding: 20px 0 20px;
+    margin: 20px 0 20px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #111;
+}
+
+.RangeBlock {
+    display: flex;
+    padding: 30px 0 10px;
+    background: #f6f6f6;
+    border-radius: 6px;
+    margin: 0 0 30px;
+}
+
+.RangeBlock.--account {
+    display: block;
+    padding: 0 0 10px;
+    background: transparent;
+}
+
+.RangeBlock h4 {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #111;
+}
+
+.rangeBlock__head {
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 150px;
+    margin: 0 70px 50px;
+}
+
+.rangeBlock__head__img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    opacity: .1;
+}
+
+.rangeBlock__head__img img {
+    width: 100%;
+}
+
+.rangeBlock__submit {
+    transform: scale(1.05);
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 50px;
+    background-color: #fac123;
+    color: #fff;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    transition: all .2s ease-out;
+}
+
+.rangeBlock__submit.--hasChanges {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: all;
+}
+
+ul.rangeList {
+    flex-grow: 1;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* ul.rangeList::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #fac123;
+} */
+
+ul.rangeList li{
+    flex-grow: 1;
+    display: block;
+    width: 20%;
+    max-width: 200px;
+    min-width: 120px;
+    margin: 0 0 20px;
+}
+
+.rangeBox {
+    width: 100%;
+    /* background-color: #ffffff; */
+    padding: 10px;
+    position: relative;
+}
+.proggRange {
+    height: 200px;
+    /* background: #ffffff; */
+	margin-bottom: 19px;
+    position: relative;
+}
+.proggRange .progressBox{
+	position: relative;
+	background: linear-gradient(to top, #fac123, #f6f6f6);
+}
+
+.rangeBxHeader {
+    position: relative;
+    display: flex;
+    height: 30px;
+}
+
+.rangeBxHeader h5 {
+    width: calc(100% - 30px);
+    padding: 0 0 0 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+}
+
+.ui-resizable-handle {
+    height: 20px;
+    background: #fff;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border: 1px solid #fac123;
+    cursor: grab;
+}
+
+.ui-resizable-s {
+    width: 100%;
+    top: 100%;
+    left: 0;
+    height: 20px;
+    background: #fff;
+    border: 1px solid #fac123;
+}
+
+.dragBoxIcon {
+    position: relative;
+    height: 20px;
+    background: #fff;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border: 1px solid #fac123;
+    cursor: grab;
+}
+
+.ui-resizable-handle:active,
+.dragBoxIcon:active {
+    cursor: grabbing;
+}
+
+.dragBoxIcon span{
+	width: 25px;
+    height: 2px;
+    background-color: #fac123;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ui-resizable-handle::after,
+.dragBoxIcon span::after {
+    content: "";
+    height: 5px;
+    width: 5px;
+    background: transparent;
+    position: absolute;
+    top: -6px;
+    left: calc(50% - 2px);
+    border-left: 2px solid #fac123;
+    border-top: 2px solid #fac123;
+    transform: rotate(45deg);
+}
+
+.ui-resizable-handle::before,
+.dragBoxIcon span::before {
+    content: "";
+    height: 5px;
+    width: 5px;
+    background: transparent;
+    position: absolute;
+    top: 3px;
+    left: calc(50% - 2px);
+    border-left: 2px solid #fac123;
+    border-top: 2px solid #fac123;
+    transform: rotate(-135deg);
+}
+
+.proggRange .progressBox h6{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #1E232B;
+}
+
+.rangeBox h5 {
+    height: 100%;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: normal;
+    text-transform: capitalize;
+    color: #111;
+    margin: 0;
+}
+
+.rangeBox .rangCloseBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    background-color: #fac123;
+}
+
+.rangeBox .rangCloseBtn img {
+    height: 10px;
+}
+
+/*Account Info box*/
+.frmStyle1 .form-group{
+	position: relative;
+}
+.frmStyle1 .form-control.frmCntrl {
+    display: block;
+    width: 100%;
+    height: 48px;
+    padding: 6px 15px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: none;
+    border-radius: 4px;
+    box-shadow: none;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.inplable {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 15px;
+    font-size: 12px;
+    color: #c5c5c5;
+}
+
+.btn-default.btn_theme {
+    background-color: #fac134;
+    border-color: #fac134;
+    border: 0;
+    color: #ffffff;
+    padding: 14px 25px;
+    font-size: 13px;
+    font-weight: 600;
+    outline: 0 !important;
+    box-shadow: none !important;
+	margin: 20px 0;
+}
+
+.btn-default.btn_theme:hover,
+.btn-default.btn_theme:focus,
+.btn-default.btn_theme:active {
+    background-color: #fac134;
+    border-color: #fac134;
+    border: 0;
+    color: #ffffff;
+    padding: 14px 25px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.changeBlock {
+    padding: 30px;
+    background: #f6f6f6;
+	min-height: 380px;
+
+}
+
+.changeBlock h5{
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 992px) {
+    .RangeBlock {
+        flex-direction: column;
+    }
+
+    .rangeBlock__head {
+        flex-direction: row;
+        max-width: 100%;
+        margin: 0 0 30px;
+        padding: 0 30px;
+    }
+
+    .rangeBlock__head h4 {
+        width: 100%;
+        margin: 0;
+        padding: 0 20px;
+    }
+
+    .rangeBlock__head__img {
+        position: static;
+        width: 50px;
+        min-width: 50px;
+        transform: translate(0, 0);
+    }
+
+    .rangeBlock__submit {
+        position: static;
+        justify-self: flex-end;
+        display: block;
+        width: auto;
+        padding: 0 20px;
+        white-space: nowrap;
+    }
+
+    ul.rangeList {
+        padding: 0 30px 0 20px;
+        flex-direction: column;
+    }
+
+    ul.rangeList li {
+        flex-grow: 1;
+        display: block;
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+        margin: 0 0 20px;
+    }
+
+    .proggRange {
+        height: 50px;
+    }
+
+    .proggRange .progressBox {
+        height: 100%;
+        background: linear-gradient(to left, #fac123, #f6f6f6);
+    }
+
+    .rangeBxHeader {
+        height: 30px;
+        padding-left: 40px;
+    }
+
+    .rangeBox .rangCloseBtn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .settings-head {
+        padding: 190px 0 20px;
+    }
+
+    ul.rangeList {
+        padding: 0 40px 0 30px;
+    }
+
+    .rangeBlock__submit {
+        padding: 0 10px;
+        font-size: 14px;
+    }
+
+    .changeBlock {
+        min-height: 0;
+        margin: 0 0 30px;
+    }
+}
+
+@media (max-width: 400px) {
+    ul.rangeList {
+        padding: 0 30px 0 20px;
+    }
+
+    .rangeBlock__submit span {
+        display: none;
+    }
+}

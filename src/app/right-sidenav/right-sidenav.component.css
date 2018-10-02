@@ -1,0 +1,322 @@
+.othersideBox {
+    display: flex;
+    padding: 5px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+
+}
+
+.otherside-img {
+    position: relative;
+    display: block;
+    margin-right: 5px;
+    width: 100px;
+    height: 100px;
+}
+
+.otherside-content {
+    width: calc(100% - 100px);
+}
+ul.otherside-sec {
+    padding: 0;
+    margin: 0;
+    background: rgba(30, 35, 43, 4%);
+}
+
+.otherside-img .small-pic {
+    position:  absolute;
+    top: 0;
+}
+
+.otherside-img p {
+    position:  absolute;
+    bottom:  0;
+    margin:  0;
+    background: #824AFF;
+    width:  100%;
+    text-align:  center;
+    color:  #fff;
+    font-weight:  bold;
+    padding: 3px 0;
+}
+
+.otherside-img .big-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.otherside-content h4 {
+/*    font-weight:  bold;
+    font-size:  14px;
+    margin-top: 0;*/
+    font-weight: 600;
+    font-size: 13px;
+    margin-top: 0;
+}
+
+ul.otherside-sec ul {
+    padding:  0;
+}
+
+ul.otherside-sec > li {
+    padding: 0;
+}
+
+ul.otherside-sec > li:last-child {
+    padding: 20px 0 0 0;
+}
+
+ul.otherside-sec li {
+    list-style:  none;
+    display:  inline-block;
+}
+
+/*ul.otherside-sec  li:last-child {
+    margin-bottom: 0;
+}*/
+
+ul.otherside-sec li a{
+    font-weight: 600;
+    font-size: 11px;
+}
+
+ul.otherside-sec li a.take-me-there {
+    font-size: 14px;
+}
+
+ul.otherside-sec  li span {
+    color: #fac134;
+    font-weight: 600;
+    margin: 0 5px;
+}
+
+.take-me-there {
+    background: #626262;
+    color:  #fff;
+    width:  100%;
+    display:  inline-block;
+    text-align:  center;
+    font-size:  14px;
+    font-weight: 600;
+    line-height:  50px;
+    text-transform:  capitalize;
+    cursor: pointer;
+}
+
+ul.otherside-sec > li {
+    list-style:  none;
+    width: 100%;
+}
+
+.latest-tweets ul {
+    padding:  0;
+    margin:  0;
+}
+
+.latest-tweets ul .tw_pic {
+    float:  left;
+    display:  inline-block;
+    margin-right: 14px;
+    width: 100px;
+}
+
+.latest-tweets ul .tw_pic img {
+    width: 100%;
+}
+
+.latest-tweets ul h4 {
+    font-size:  14px;
+    font-weight:  bold;
+}
+
+.latest-tweets ul p {
+    margin-bottom: 0;
+}
+
+.latest-tweets ul a {
+    color: rgba(30, 35, 43, 0.24);
+    font-weight:  bold;
+}
+
+.latest-tweets ul li {
+    list-style:  none;
+}
+
+.latest-tweets ul a.show-more-tweets {
+    background:  #55ADEE;
+    margin:  0 auto;
+    display:  block;
+    width:  200px;
+    text-align:  center;
+    height:  50px;
+    line-height:  50px;
+    color: #ffffff !important;
+    font-size:  14px;
+    font-weight:  bold;
+}
+
+.latest-tweets ul li {
+    margin-bottom: 30px;
+}
+
+.latest-tweets h2 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.latest-tweets {
+    margin-top: 40px;
+    display:  inline-block;
+    width:  100%;
+}
+
+.on-other-side h2 {
+    margin: 10px 0 20px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1E232B;
+}
+
+.right-sidenav {
+    /*padding-left: 20px;*/
+    display:  inline-block;
+    width:  100%;
+}
+
+.otherside-sec{
+    overflow-y: auto;
+    max-height: 700px;
+}
+
+.latest-tweets{
+    overflow-y: auto;
+    width: 350px;
+    max-height: 500px;
+}
+
+/* Celebrities */
+.celebs {
+    margin: 25px 0;
+}
+
+.celebs__top {
+    display: flex;
+    margin: 0 0 25px;
+}
+
+.celebs__tab-btn {
+    flex-grow: 1;
+    height: 50px;
+    width: 50%;
+    max-width: 50%;
+    padding: 0;
+    margin: 0;
+    background-color: #e6e6e6;
+    font-size: 15px;
+    font-weight: bold;
+    color: #adadad;
+    border: none;
+    outline: none;
+}
+
+.celebs__tab-btn.--active {
+    background-color: #FAC134;
+    color: #fff;
+}
+
+
+.celebs__single {
+    display: flex;
+    margin: 0 0 20px;
+}
+
+.celebs__single > * {
+    flex-grow: 1;
+}
+
+.celebs__single__left {
+    width: 50px;
+    max-width: 50px;
+}
+
+.celebs__single__right {
+    width: calc(100% - 50px);
+    padding: 0 0 0 15px;
+    font-size: 12px;
+    color: #111;
+}
+
+.celebs__single__name {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    color: #FAC134;
+}
+
+.celebs__single__img {
+    width: 100%;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.celebs__single__img img {
+    width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.celebs__single__title {
+    padding: 0 10px 5px 0;
+    overflow: hidden;
+    font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.celebs__single__footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 0 0;
+}
+
+.celebs__single__view-btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.celebs__single__timestamp {
+    color: #4A8FFF;
+    font-size: 12px;
+}
+
+.celebs__footer {
+}
+
+.celebs__load-more-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4A8FFF;
+    text-decoration: underline;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.celebs__load-more-btn:hover {
+    opacity: .8;
+    text-decoration: underline;
+}
+
+.celebs__load-more-btn img {
+    width: 12px;
+    margin: 0 0 0 10px;
+}

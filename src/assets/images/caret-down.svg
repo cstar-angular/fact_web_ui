@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11.727 7.725">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #4a8fff;
+        stroke: #4a8fff;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <path id="down-chevron" class="cls-1" d="M8.436,91.567,4.449,95.541.463,91.567,0,92.031l4.449,4.435L8.9,92.031Z" transform="translate(1.414 -90.153)"/>
+</svg>
