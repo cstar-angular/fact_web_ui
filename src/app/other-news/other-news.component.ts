@@ -34,9 +34,9 @@ export class OtherNewsComponent implements OnInit {
     categories : Array<any>;
     sources : Array<any>;
     selected_categories : Array<any> = [];
+    selected_sources : Array<any> = [];
     q : string = '';
     result : Array<any> = [];
-    selected_sources : Array<any> = [];
     user_sources : Array<any>;
     twitter_feed : Array<any>;
 
@@ -79,6 +79,7 @@ export class OtherNewsComponent implements OnInit {
             custom: 'banner'
         }
         this.news();
+        
         if (this.token.getToken() != null){
             this.auth = 1;
             this.authService.attemptUserCategory().subscribe(
@@ -98,14 +99,16 @@ export class OtherNewsComponent implements OnInit {
 
         }else{
             this.auth = 0;
+            this.selected_categories = JSON.parse(localStorage.getItem('selected_categories'));
+            this.selected_sources = JSON.parse(localStorage.getItem('selected_sources'));
         }
-
+        
         this.applyFilter('onload');
         this.authService.attemptSource().subscribe(
           data => {
               this.sources = data.data;
               for(var i = 0;i < this.sources.length;i++){
-                  if(this.selected_sources.indexOf(this.sources[i]['id']) >= 0){
+                  if(this.selected_sources.find(id => this.sources[i].id == id)){
                       this.sources[i]['selected'] = true;
                   }else{
                       this.sources[i]['selected'] = false;
@@ -119,8 +122,9 @@ export class OtherNewsComponent implements OnInit {
         this.authService.attemptCategory().subscribe(
           data => {
               this.categories = data.data;
+
               for(var i = 0;i < this.categories.length;i++){
-                  if(this.selected_categories.indexOf(this.categories[i]['id']) >= 0){
+                  if(this.selected_categories.find(id => this.categories[i].id == id)){
                       this.categories[i]['selected'] = true;
                   }else{
                       this.categories[i]['selected'] = false;
@@ -207,7 +211,7 @@ export class OtherNewsComponent implements OnInit {
           }
           this.applyFilter('manual');
       }
-      applyFilter(status : string){
+      applyFilter(status : string = ''){
           this.q = $('#js-query-q').val().trim();
           this.selected_category = [];
           var category = document.getElementsByClassName("js-query-search-category");

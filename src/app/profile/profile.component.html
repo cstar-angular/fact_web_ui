@@ -17,7 +17,8 @@
           </label>
       </div>
       <div class="img-circle">
-        <img src="{{result.image}}" id="js-profile-image">
+          <img *ngIf="result.image" src="{{result.image}}" id="js-profile-image" />
+          <img *ngIf="!result.image" src="assets/images/default-user.png" id="js-profile-image" />
       </div>
       <div class="profile_name">
         <h4 id="js-user-profile-name">{{profile_name}} <img src="assets/images/pencil.png" (click)="updatename()"></h4>
@@ -29,24 +30,24 @@
         <input type="file" (change)="onFileSelected($event)">
         <button type="button" (click)="store()">Update</button> -->
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" [(ngModel)]="name" name="name" placeholder="Enter your name" value="{{result.username}}" class="form-control">
+            <label for="name" i18n>Name</label>
+            <input type="text" id="name" [(ngModel)]="name" name="name" placeholder="Enter your name" value="{{result.username}}" class="form-control" i18n-placeholder>
           </div>
           <div class="form-group">
-            <label for="userImage">Profile picture</label>
+            <label for="userImage" i18n>Profile picture</label>
             <input type="file" (change)="onFileSelected($event)" id="userImage">
           </div>
           <div class="form-group submit-btns">
-            <button type="button" (click)="updateBxclose()" class="bxClose_btn">Close</button>
-            <button type="button" (click)="store()" class="update_btn">Update</button>
+            <button type="button" (click)="updateBxclose()" class="bxClose_btn" i18n>Close</button>
+            <button type="button" (click)="store()" class="update_btn" i18n>Update</button>
           </div>
         </div>
         </div>
       </div>
       <ul>
-        <li><a href="">133 Reads</a><span>|</span></li>
-        <li><a href="">18 Followers</a><span>|</span></li>
-        <li><a href="">36 Following</a></li>
+        <li><a href="" i18n>133 Reads</a><span>|</span></li>
+        <li><a href="" i18n>18 Followers</a><span>|</span></li>
+        <li><a href="" i18n>36 Following</a></li>
       </ul>
     </div>
   </div>
@@ -56,7 +57,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 home-mainsection">
           <div class="news-sec-title">
             <div class="title-filter-sec">
-              <h2>Latest Reads </h2>
+              <h2 i18n>Latest Reads </h2>
             </div>
             <div class="filter-sec">
               <!-- <span>Filter By :</span>
@@ -80,11 +81,11 @@
                   </li> -->
                 <li>
                   <input type="radio" (click)="checkFilter('asc')" class="logged_in_filter" name="filter" id="js-asc-filter" checked>
-                  <label for="js-asc-filter">Ascending</label>
+                  <label for="js-asc-filter" i18n>Ascending</label>
                 </li>
                 <li>
                   <input type="radio" (click)="checkFilter('desc')" class="logged_in_filter" name="filter" id="js-desc-filter">
-                  <label for="js-desc-filter">Descending</label>
+                  <label for="js-desc-filter" i18n>Descending</label>
                 </li>
               </ul>
             </div>
@@ -92,7 +93,7 @@
           <div class="news-section-all" (scroll)="lazyload($event)">
             <div class="news-sec" *ngFor="let number of profile_feed | keys;let i = index">
               <div class="news-img">
-                <img class="big-img" src="{{profile_feed[i].img_url}}" alt="">
+                <img class="big-img" src="{{profile_feed[i].img_url ? profile_feed[i].img_url : 'assets/images/no-img.png'}}">
                 <!-- <img class="small-img" src="assets/images/left-sidebar/5.png" alt=""> -->
               </div>
               <div class="news-cont">
@@ -127,8 +128,8 @@
       <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
         <div class="following">
           <div class="title-sec">
-            <h4>Following</h4>
-            <span>336 Following</span>
+            <h4 i18n>Following</h4>
+            <span>336 </span><span i18n>Following</span>
           </div>
           <ul class="following-peoples">
             <li *ngFor="let number of [0,1,2,3,4,5,6,7,8,9];let i = index;">
@@ -136,19 +137,19 @@
                 <div class="profile-pic-sec">
                 <img src="assets/images/profile-pic.jpg" alt="">
                 </div>
-                  <span>user {{i+1}}</span>
+                  <span i18n>user {{i+1}}</span>
 
                 </a>
             </li>
           </ul>
           <div class="mybuttons">
-            <button>Show ALL</button>
+            <button i18n>Show ALL</button>
           </div>
         </div>
         <div class="following followers">
           <div class="title-sec">
-            <h4>Followers</h4>
-            <span>336 Followers</span>
+            <h4 i18n>Followers</h4>
+            <span>336 </span><span i18n>Followers</span>
           </div>
           <ul class="following-peoples">
             <li *ngFor="let number of [0,1,2,3,4,5,6,7,8,9];let i = index;">
@@ -156,29 +157,29 @@
                 <div class="profile-pic-sec">
                   <img src="assets/images/profile-pic.jpg" alt="">
                 </div>
-                  <span>user {{i+1}}</span>
+                  <span i18n>user {{i+1}}</span>
                 </a>
             </li>
           </ul>
           <div class="mybuttons">
-            <button>Show ALL</button>
+            <button i18n>Show ALL</button>
           </div>
         </div>
         <div class="following top-categories">
           <div class="title-sec">
-            <h4>Top Categories</h4>
+            <h4 i18n>Top Categories</h4>
             <!-- <span data-toggle="collapse" data-target="#top-categories"></span> -->
           </div>
           <ul class="following-peoples collapse in" id="top-categories">
             <li *ngFor="let key of user_categories | keys">
               <a href="javascript:void(0)">{{user_categories[key].category.category_name}}</a>
             </li>
-            <li *ngIf="user_category_status == 0">
+            <li *ngIf="user_category_status == 0" i18n>
               Please add some categories
             </li>
           </ul>
           <div class="mybuttons">
-            <button id="js-top-categories__btn" (click)="showAllCategory()">Edit</button>
+            <button id="js-top-categories__btn" (click)="showAllCategory()" i18n>Edit</button>
           </div>
           <div id="js-top-categories" class="addPillList" style="display:none">
             <ul class="following-peoples collapse in" id="top-categories">
@@ -188,18 +189,18 @@
                   <label>{{categories[key]['category_name']}}</label>
                 </div>
               </li>
-              <li *ngIf="category_status == 0">
+              <li *ngIf="category_status == 0" i18n>
                 No categories found
               </li>
             </ul>
             <div *ngIf="category_status == 1" class="text-right">
-              <input class="update_btn" type="button" (click)="updateType('category')" value="Update">
+              <input class="update_btn" type="button" (click)="updateType('category')" value="Update" i18n-value>
             </div>
           </div>
         </div>
         <div class="following top-sources">
           <div class="title-sec">
-            <h4>Top Sources</h4>
+            <h4 i18n>Top Sources</h4>
             <!-- <span data-toggle="collapse" data-target="#top-sources"></span> -->
           </div>
           <ul class="following-peoples collapse in" id="top-sources" *ngIf="sources">
@@ -208,7 +209,7 @@
             </li>
           </ul>
           <div class="mybuttons">
-            <button id="js-top-sources__btn" (click)="showAllSource()">Edit</button>
+            <button id="js-top-sources__btn" (click)="showAllSource()" i18n>Edit</button>
           </div>
           <div id="js-top-sources" class="addPillList" style="display:none">
             <ul class="following-peoples collapse in" id="top-sources" *ngIf="sources">
@@ -218,12 +219,12 @@
                   <label>{{sources[key]['source']}}</label>
                 </div>
               </li>
-              <li *ngIf="sources.length <= 0">
+              <li *ngIf="sources.length <= 0" i18n>
                 No sources found
               </li>
             </ul>
             <div *ngIf="sources.length > 0" class="text-right">
-              <input class="update_btn" type="button" (click)="updateType('source')" value="Update">
+              <input class="update_btn" type="button" (click)="updateType('source')" value="Update" i18n-value>
             </div>
           </div>
         </div>

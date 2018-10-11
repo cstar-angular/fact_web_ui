@@ -90,9 +90,11 @@ export class ProfileComponent implements OnInit
         this.authService.attemptProfile().subscribe(
             data =>
             {
+                console.log('aaaaa');
+                console.log(data);
                 this.auth = 1;
                 this.result = data;
-                this.profile_name = data.username;
+                this.profile_name = data.first_name;
                 this.name = data.username;
                 this.url = data.cover_image;
             },

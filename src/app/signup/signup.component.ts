@@ -87,7 +87,7 @@ export class SignupComponent implements OnInit {
           if($('.error').length > 0){
               $('.error').remove();
           }
-          if(!(this.first_name) || !(this.last_name) || !(this.email) || isNaN(this.phone) || !(this.gender) || !(this.username) || !(this.password) || !(this.dob) || !(this.phone) || !(this.confirm_password) || this.terms <= 0){
+          if(!(this.first_name) || !(this.last_name) || !(this.email) || !(this.gender) || !(this.username) || !(this.password) || !(this.dob) || !(this.confirm_password) || this.terms <= 0){
               if(!(this.first_name)){
                   $('#first_name').addClass('input_error');
                   $('#first_name_error').append('<span class="error" data-toggle="tooltip" title="Invalid firstname"> <i class="fa fa-info-circle" aria-hidden="true"></i> </span>');
@@ -111,10 +111,10 @@ export class SignupComponent implements OnInit {
                   $('#dob').addClass('input_error');
                   $('#dob_error').append('<span class="error" data-toggle="tooltip" title="Invalid Date of birth"> <i class="fa fa-info-circle" aria-hidden="true"></i> </span>');
               }
-              if(!(this.phone) || isNaN(this.phone)){
-                  $('.telephone-no').addClass('telephone_input_error');
-                  $('#phone_error').append('<span class="error" data-toggle="tooltip" title="Invalid phone"> <i class="fa fa-info-circle" aria-hidden="true"></i> </span>');
-              }
+            //   if(!(this.phone) || isNaN(this.phone)){
+            //       $('.telephone-no').addClass('telephone_input_error');
+            //       $('#phone_error').append('<span class="error" data-toggle="tooltip" title="Invalid phone"> <i class="fa fa-info-circle" aria-hidden="true"></i> </span>');
+            //   }
               if(!(this.password)){
                   $('#password').addClass('input_error');
                   $('#password-error').append('<span class="error" data-toggle="tooltip" title="Invalid password"> <i class="fa fa-info-circle" aria-hidden="true"></i> </span>');
@@ -133,7 +133,7 @@ export class SignupComponent implements OnInit {
               }
               return false;
           }
-          this.authService.attemptRegister(this.first_name, this.last_name, this.email, this.gender,this.username,this.dob,this.phone,this.password).subscribe(data => {
+          this.authService.attemptRegister(this.first_name, this.last_name, this.email, this.gender,this.username,this.dob, this.password).subscribe(data => {
               if(data.status == 1){
                   this.first_name = '';
                   this.last_name = '';
@@ -143,6 +143,7 @@ export class SignupComponent implements OnInit {
                   this.dob = '';
                   this.password = '';
                   this.confirm_password = '';
+                  
                   this._flashMessagesService.show('Profile Created Successfully , Please Login !', { cssClass: 'alert-success', timeout: 5000 });
                   location.reload();
               }else{

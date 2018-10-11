@@ -3,13 +3,13 @@
 </header>
 <main class="mainBlock">
 	<div class="settings-head">
-		<h2>Settings</h2>
+		<h2 i18n>Settings</h2>
 	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="bannerHeading">
-					<h2>Sensitivity setting</h2>
+					<h2 i18n>Sensitivity setting</h2>
 				</div>
 			</div>
 		</div>
@@ -21,8 +21,8 @@
 						<div class="rangeBlock__head__img">
 							<img src="assets/images/book.svg">
 						</div>
-						<h4>By Topic</h4>
-						<button class="rangeBlock__submit" [class.--hasChanges]="categoriesHasChanges" (click)="categoriesSubmitClick()">Save <span>changes</span></button>
+						<h4 i18n>By Topic</h4>
+						<button class="rangeBlock__submit" [class.--hasChanges]="categoriesHasChanges" (click)="categoriesSubmitClick()" i18n>Save <span>changes</span></button>
 					</div>
 					<ul class="rangeList" *ngIf="categories">
 						<li *ngFor="let cat of categories">
@@ -54,8 +54,8 @@
 						<div class="rangeBlock__head__img">
 							<img src="assets/images/satellite.svg">
 						</div>
-						<h4>By Source</h4>
-						<button class="rangeBlock__submit" [class.--hasChanges]="topicsHasChanges" (click)="topicsSubmitClick()">Save <span>changes</span></button>
+						<h4 i18n>By Source</h4>
+						<button class="rangeBlock__submit" [class.--hasChanges]="topicsHasChanges" (click)="topicsSubmitClick()" i18n>Save <span>changes</span></button>
 					</div>
 					<ul class="rangeList" *ngIf="sources">
 						<li *ngFor="let source of sources">
@@ -85,24 +85,24 @@
 				<div class="RangeBlock --account">
 					<!-- <h4>ACCOUNT INFO</h4> -->
 					<div class="bannerHeading">
-						<h2>Account Info</h2>
+						<h2 i18n>Account Info</h2>
 					</div>
 
 					<div class="row">
 						<div class="col-xs-12 col-sm-6">
 
 							<div class="changeBlock">
-								<h5>Change Email</h5>
+								<h5 i18n>Change Email</h5>
 
 								<form class="frmStyle1">
 								  <div class="form-group">
 								    <input type="email" class="form-control frmCntrl" id="primaryMail" placeholder="illijatp@gmail.com" style="    padding-right: 100px;">
-								    <span class="inplable"> Primary email</span>
+								    <span class="inplable" i18n>Primary email</span>
 								  </div>
 								  <div class="form-group">
 								    <input type="email" class="form-control frmCntrl" id="newMail" placeholder="Email">
 								  </div>
-								  <button type="submit" class="btn btn-default btn_theme">Save Changes</button>
+								  <button type="submit" class="btn btn-default btn_theme" i18n>Save Changes</button>
 								</form>
 
 							</div>
@@ -110,19 +110,19 @@
 						</div>
 						<div class="col-xs-12 col-sm-6">
 							<div class="changeBlock">
-								<h5>Change Password</h5>
+								<h5 i18n>Change Password</h5>
 
 								<form class="frmStyle1">
 								  <div class="form-group">
-								    <input type="password" class="form-control frmCntrl" id="oldPwd" placeholder="Old password" >
+								    <input type="password" class="form-control frmCntrl" id="oldPwd" placeholder="Old password" i18n-placeholder>
 								  </div>
 								  <div class="form-group">
-								    <input type="password" class="form-control frmCntrl" id="newPwd" placeholder="New password">
+								    <input type="password" class="form-control frmCntrl" id="newPwd" placeholder="New password" i18n-placeholder>
 								  </div>
 								  <div class="form-group">
-								    <input type="password" class="form-control frmCntrl" id="confirmPwd" placeholder="Confirm password">
+								    <input type="password" class="form-control frmCntrl" id="confirmPwd" placeholder="Confirm password" i18n-placeholder>
 								  </div>
-								  <button type="submit" class="btn btn-default btn_theme">Save Changes</button>
+								  <button type="submit" class="btn btn-default btn_theme" i18n>Save Changes</button>
 								</form>
 							</div>
 						</div>

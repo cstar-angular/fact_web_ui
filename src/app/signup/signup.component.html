@@ -4,30 +4,30 @@
     <a class="close-popup" href="javascript:void(0)" (click)=updateBxclose()><i class="fa fa-times" aria-hidden="true"></i></a>
     <div class="login-signup-popup">
       <ul class="nav nav-pills">
-        <li class="active"><a data-toggle="pill" href="#signin">LOG IN (EXISTING NEW USER)</a></li>
-        <li class=""><a data-toggle="pill" href="#signup">REGISTER NEW USER</a></li>
+        <li class="active"><a data-toggle="pill" href="#signin" i18n>LOG IN (EXISTING NEW USER)</a></li>
+        <li class=""><a data-toggle="pill" href="#signup" i18n>REGISTER NEW USER</a></li>
       </ul>
       <div class="tab-content">
         <div id="signin" class="tab-pane fade in active">
           <div class="loginform">
             <form action="">
               <div class="form-group">
-                <label for="email" id="login-email-error">Username / Email Address</label>
+                <label for="email" id="login-email-error" i18n>Username / Email Address</label>
                 <input type="email" id="l_email" placeholder="Enter your email" [(ngModel)]="l_username" name="l_username" required>
                 <span class="error"></span>
               </div>
               <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password" i18n>Password</label>
                 <input type="password" id="l_password" placeholder="Enter your password" [(ngModel)]="l_password" name="l_password" required>
                 <span class="error" id="password-error"></span>
               </div>
               <div class="form-group text-right">
-                <a href="" class="forget-pass-link">Forget Password?</a>
+                <a href="" class="forget-pass-link" i18n>Forget Password?</a>
               </div>
-              <button type="submit" (click)="login()" class="btn btn-default">LOGIN</button>
+              <button type="submit" (click)="login()" class="btn btn-default" i18n>LOGIN</button>
             </form>
             <div id="social-login">
-              <div>Or Login With</div>
+              <div i18n>Or Login With</div>
               <div>
                   <a (click)="socialLogin('facebook')" href="javascript:void(0)" ><i class="fa fa-facebook"></i></a>
                   <a (click)="socialLogin('google')" href="javascript:void(0)"><i class="fa fa-google"></i></a>
@@ -40,24 +40,24 @@
             <form action="">
               <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                 <div class="form-group">
-                  <label  for="first_name"><span id="first_name_error">First Name</span></label>
+                  <label  for="first_name"><span id="first_name_error" i18n>First Name</span></label>
                   <input type="text" id="first_name" [(ngModel)]="first_name" name="first_name">
                 </div>
                 <div class="form-group">
                   <label for="email">
-                      <span id="email-error">Email Address</span>
+                      <span id="email-error" i18n>Email Address</span>
                   </label>
                   <input type="text" id="email" [(ngModel)]="email" name="email">
                 </div>
                 <div class="form-group dob">
                   <label  for="dob">
-                    <span id="dob_error">Date Of Birth</span>
+                    <span id="dob_error" i18n>Date Of Birth</span>
                   </label>
                   <input type="date"  id="dob" [(ngModel)]="dob" name="dob">
                 </div>
                 <div class="form-group">
                   <label  for="username">
-                    <span id="username-error">Choose Username</span>
+                    <span id="username-error" i18n>Choose Username</span>
                   </label>
                   <input type="text" id="username" [(ngModel)]="username" name="username">
                 </div>
@@ -65,21 +65,21 @@
               <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                 <div class="form-group">
                   <label for="last_name" >
-                    <span id="last_name_error">Last Name</span>
+                    <span id="last_name_error" i18n>Last Name</span>
                   </label>
                   <input type="text" id="last_name" [(ngModel)]="last_name" name="last_name">
                 </div>
                 <div class="form-group">
                   <div data-toggle="buttons" class="gender-selection">
                     <label>
-                      <span id="gender-error">Gender</span>
-                      <span id="gender-error" class="error" data-toggle="tooltip" title="Invalid gender"></span>
+                      <span id="gender-error" i18n>Gender</span>
+                      <span id="gender-error" class="error" data-toggle="tooltip" title="Invalid gender" i18n-title></span>
                     </label>
                     <div class="gender-labels">
                       <label  class="btn btn-gender btn-default active">
 
                         <input type="radio" id="male" name="gender"  click="updateGender('MALE')">
-                        <span class="btn-gender__txt">male</span>
+                        <span class="btn-gender__txt" i18n>male</span>
                         <div class="gender-img">
                           <svg version="1.1" width="30px" height="30px" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30.566 45.348" style="enable-background:new 0 0 487.678 487.678;" xml:space="preserve">
                             <g>
@@ -91,7 +91,7 @@
                         </div>
                       </label>
                       <label class="btn btn-gender btn-default">
-                        <span class="btn-gender__txt">female</span>
+                        <span class="btn-gender__txt" i18n>female</span>
                         <input type="radio" id="female" name="gender"  click="updateGender('FEMALE')">
                         <div class="gender-img">
                           <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 32.173 47.999" style="enable-background:new 0 0 537.6 537.6;" xml:space="preserve">
@@ -111,7 +111,7 @@
                         </div>
                       </label>
                       <label class="btn btn-gender btn-default">
-                        <span class="btn-gender__txt">other</span>
+                        <span class="btn-gender__txt" i18n>other</span>
                         <input type="radio" id="other" name="gender"  click="updateGender('OTHER')">
                         <div class="gender-img">
                           <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve">
@@ -149,7 +149,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 p-l-r-0">
                   <div class="form-group">
                     <label for="password" >
-                      <span id="password-error">Set Password</span>
+                      <span id="password-error" i18n>Set Password</span>
                     </label>
                     <input type="password" id="password" [(ngModel)]="password" name="password">
                   </div>
@@ -157,7 +157,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 p-r-0">
                   <div class="form-group">
                     <label  for="confirm_password">
-                      <span id="confirm-password-error">Repeat Password</span>
+                      <span id="confirm-password-error" i18n>Repeat Password</span>
                     </label>
                     <input type="password" id="confirm_password" [(ngModel)]="confirm_password" name="confirm_password">
                   </div>
@@ -169,17 +169,17 @@
                 <label for="terms" id=" checkbox-custom">
                   <span class="error" id="terms-conditions-error"></span>
                 </label>
-                <label>I agree to the terms and conditions</label>
+                <label i18n>I agree to the terms and conditions</label>
               </div>
             </div>
 
             <div class="form-group text-center col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <button type="submit" id="js-register-button" class="btn btn-default" (click)="register()">REGISTER</button>
+              <button type="submit" id="js-register-button" class="btn btn-default" (click)="register()" i18n>REGISTER</button>
             </div>
             </form>
           </div>
           <div id="social-login" class="register_social-login">
-            <div>Or Login With</div>
+            <div i18n>Or Login With</div>
             <div>
                 <a (click)="socialLogin('facebook')" href="javascript:void(0)" ><i class="fa fa-facebook"></i></a>
                 <a (click)="socialLogin('google')" href="javascript:void(0)"><i class="fa fa-google"></i></a>

@@ -1,7 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { AuthService } from '../core/auth.service';
 import { TokenStorage } from '../core/token.storage';
-import { Router } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 declare var jquery:any;
 declare var $ :any;
 
@@ -18,13 +18,23 @@ export class HeaderComponent implements OnInit {
   result :Array<any>=[];
   site_search : string;
 
-  constructor(private token: TokenStorage,private authService: AuthService,private router: Router) { }
+  languages = [
+    {label: 'MK', code: 'en'},
+    {label: 'AL', code: 'al'},
+  ];
+  localeId: string = localStorage.getItem('language');
+
+  constructor(
+      private token: TokenStorage,
+      private authService: AuthService,
+      private router: Router,
+    //   public translate: 
+    ) { }
     ngOnInit() {
         if (this.token.getToken() != null){
             this.auth = 1;
             this.authService.attemptProfile().subscribe(data => {
                 this.result = data;
-                console.log(this.result)
             });
         }
     }
@@ -45,5 +55,11 @@ export class HeaderComponent implements OnInit {
     updateBxopen(){
         $('.sign-up-modal').addClass('login-form-active');
 
-      }
+    }
+
+    changeLanguage(lang: string) {
+        window.localStorage.setItem('language', lang);
+        this.localeId = lang;
+        location.reload();
+    }
 }

@@ -21,6 +21,8 @@ import { KeysPipe } from '../core/keys-pipe.pipe';
 export class RightSidenavComponent implements OnInit {
     twitter_feed : Array<any>;
     result: Array<any>;
+    activeCelebsTab: number;
+    
   constructor(private http: HttpClient,private router: Router, private token: TokenStorage,private authService: AuthService,private _flashMessagesService: FlashMessagesService) { }
 
   ngOnInit() {
@@ -34,4 +36,6 @@ export class RightSidenavComponent implements OnInit {
           console.log(data);
         });
   }
+
+  handleCelebsTabClick(id : string = '') {}
 }

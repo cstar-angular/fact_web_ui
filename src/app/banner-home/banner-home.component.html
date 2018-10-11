@@ -1,15 +1,15 @@
 <div class="banner-home">
   <div class="container">
       <flash-messages></flash-messages>
-    <h2>Top News:</h2>
+    <h2 i18n>Top News:</h2>
   </div>
   <ngx-carousel [inputs]="carouselOne">
 
-    <ngx-item NgxCarouselItem *ngFor="let article of result | async">
+    <ngx-item NgxCarouselItem *ngFor="let article of topNews;">
       <div class="carousel-items">
         <div class="news-sec">
           <div class="news-img">
-            <img class="big-img" src="{{article['img_url']}}" alt="">
+            <img class="big-img" src="{{article['img_url'] ? article['img_url'] : 'assets/images/no-img.png'}}" alt="">
             <img class="small-img" src="assets/images/left-sidebar/5.png" alt="">
           </div>
           <div class="news-cont">

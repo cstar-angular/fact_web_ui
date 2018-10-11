@@ -8,6 +8,7 @@ import { setting } from '../../core/setting';
 @Injectable({ providedIn: 'root' })
 export class NewsService
 {
+  language: string = localStorage.getItem('language');
   // ______________________________________________________________________Constructor and lifecycle hooks
   constructor(private _http: HttpClient) { }
 
@@ -16,7 +17,7 @@ export class NewsService
   {
 
     const URL = `${environment.api}stats/articles-read`;
-    const PARAMS = { by: selectBy, period: `${from},${to}` };
+    const PARAMS = { by: selectBy, period: `${from},${to}`, language: this.language };
 
     return this._http.get(URL, { params: PARAMS });
   }
@@ -39,23 +40,23 @@ export class NewsService
   {
     return this._http.get<any>(environment.api + News.get_home_feed,
       {
-        params: { 'page': params.page.toString() }
+        params: { 'page': params.page.toString(), 'language': this.language }
       });
   }
 
   public getTopNews(): Observable<any>
   {
-    return this._http.get<any>(environment.api + News.get_top);
+    return this._http.get<any>(environment.api + News.get_top, {params: {'language': this.language }});
   }
 
   public getCategories(): Observable<any>
   {
-    return this._http.get<any>(environment.api + News.get_category);
+    return this._http.get<any>(environment.api + News.get_category, {params: {'language': this.language }});
   }
 
   public getSources(): Observable<any>
   {
-    return this._http.get<any>(environment.api + News.get_source);
+    return this._http.get<any>(environment.api + News.get_source, {params: {'language': this.language }});
   }
 }
 

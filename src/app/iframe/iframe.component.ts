@@ -21,8 +21,8 @@ export class IframeComponent implements OnInit {
   url : string;
   loading : number = 0;
   ads : Array<any> = [];
-  left_ad : string = '#';
-  right_ad : string = '#';
+  left_ad : any;
+  right_ad : any;
   ngOnInit() {
       this.analytics.updateStats('iframe');
       this.id = this.route.snapshot.params.id;

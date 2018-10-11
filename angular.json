@@ -53,6 +53,52 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
+            },
+            "production-en": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "outputPath": "dist/fact/en",
+              "baseHref": "/en/",
+              "i18nFile": "src/locale/messages.en_US.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en",
+              "i18nMissingTranslation": "error"
+            },
+            "production-al": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputPath": "dist/fact/al/",
+              "baseHref": "/al/",
+              "i18nFile": "src/locale/messages.al.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "al",
+              "i18nMissingTranslation": "error"
             }
           }
         },
@@ -64,6 +110,12 @@
           "configurations": {
             "production": {
               "browserTarget": "fact:build:production"
+            },
+            "en": {
+              "browserTarget": "fact:build:production-en"
+            },
+            "al": {
+              "browserTarget": "fact:build:production-al"
             }
           }
         },

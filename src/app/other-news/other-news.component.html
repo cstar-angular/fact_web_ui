@@ -6,20 +6,20 @@
     <div class="banner-home">
         <div class="container">
             <flash-messages></flash-messages>
-            <h2>Top News:</h2>
+            <h2 i18n>Top News:</h2>
         </div>
         <ngx-carousel [inputs]="carouselOne" class="otherSide__carousel">
             <ngx-item NgxCarouselItem *ngFor="let number of result;let i = index">
             <div class="carousel-items">
                 <div class="news-sec">
                     <div class="news-img">
-                        <img class="big-img" src="{{number['img_url']}}" alt="">
+                        <img class="big-img" src="{{number['img_url'] ? number['img_url'] : 'assets/images/no-img.png'}}" alt="">
                         <img class="small-img" src="assets/images/left-sidebar/5.png" alt="">
                     </div>
                     <div class="news-cont">
                         <!-- <a href="" class="news-type">politics</a> -->
                         <div class="news-content">
-                            <h4><a href="javascript:void(0)" (click) = "loadIframe(number['id'])"><span class="new_badge">New</span>{{number['title']}}</a></h4>
+                            <h4><a href="javascript:void(0)" (click) = "loadIframe(number['id'])"><span class="new_badge" i18n>New</span>{{number['title']}}</a></h4>
                             <span class="news-content__timestamp">{{number['published_date']}}</span>
                             <p> {{ number.content || number.description || number.custom_description }}</p>
                             <div class="news-cont__bottom">
@@ -31,11 +31,11 @@
                                         <li><a href=""><img src="assets/images/banner/sharethis-logo.svg" alt=""></a></li>
                                     </ul>
                                 </div>
-                            </div>
-                            <div class="news_topic">
-                                <ul>
-                                    <li><a class="news-type">{{number.category_name}}</a></li>
-                                </ul>
+                                <div class="news_topic">
+                                    <ul>
+                                        <li><a class="news-type">{{number.category_name}}</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -55,17 +55,17 @@
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                 <div class="left-sidenav">
                   <div class="keywords sidenavBox">
-                    <h4 data-toggle="collapse" data-target="#keywords">keywords <img src="assets/images/left-sidebar/down.png" alt=""></h4>
+                    <h4 data-toggle="collapse" data-target="#keywords" i18n>keywords <img src="assets/images/left-sidebar/down.png" alt=""></h4>
                     <div id="keywords" class="collapse in">
                         <div class="form-group">
-                          <input type="text" id="js-query-q"  placeholder="add keywords…" autofocus="" [(ngModel)]="q" >
+                          <input type="text" id="js-query-q"  placeholder="add keywords…" autofocus="" [(ngModel)]="q" i18n-placeholder>
                           <input type="button" value="Filter" (click)="applyFilter()">
                         </div>
 
                     </div>
                   </div>
                   <div class="categories sidenavBox">
-                    <h4 data-toggle="collapse" data-target="#categories">categories <img src="assets/images/left-sidebar/down.png" alt=""></h4>
+                    <h4 data-toggle="collapse" data-target="#categories" i18n>categories <img src="assets/images/left-sidebar/down.png" alt=""></h4>
                     <div id="categories" class="collapse in">
                         <ul>
                           <li *ngFor="let key of categories | keys">
@@ -76,13 +76,14 @@
                     </div>
                   </div>
                   <div class="sources sidenavBox">
-                    <h4 data-toggle="collapse" data-target="#sources">sources <img src="assets/images/left-sidebar/down.png" alt=""></h4>
+                    <h4 data-toggle="collapse" data-target="#sources" i18n>sources <img src="assets/images/left-sidebar/down.png" alt=""></h4>
                     <div id="sources" class="collapse in">
                         <ul>
                            <li *ngFor="let key of sources | keys">
                             <input type="checkbox" (click) = "applyFilter()" class="js-query-search-source"  id="source-{{sources[key]['id']}}" value="{{sources[key]['id']}}" [(ngModel)] = "!sources[key]['selected']">
                             <label for="source-{{sources[key]['id']}}">
-                            	<span><img src="assets/images/left-sidebar/1.png" alt="">{{sources[key]['source']}}</span>
+                            	<!-- <span><img src="assets/images/left-sidebar/1.png" alt="">{{sources[key]['source']}}</span> -->
+                            	<span>{{sources[key]['source']}}</span>
                             </label>
                           </li>
                         </ul>
@@ -96,14 +97,14 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="pull-left">
-                            <h4 class="newsTitle">News</h4>
+                            <h4 class="newsTitle" i18n>News</h4>
                         </div>
                         <div class="pull-right">
-                            <span class="filTitle">Filter : &nbsp;</span>
+                            <span class="filTitle" i18n>Filter : &nbsp;</span>
                             <ul *ngIf="auth == 1" class="filter_newsFeed">
-                                <li><input type="checkbox" (click)="applyLoggedInFilter(1)" class="logged_in_filter" name="my_filter" value="1" id="js-filter-all" checked><label for="js-filter-all">All</label></li>
-                                <li><input type="checkbox" (click)="applyLoggedInFilter(2)" class="logged_in_filter" name="my_filter" value="2" id="js-filter-wall"><label for="js-filter-wall">My Wall</label></li>
-                                <li><input type="checkbox" (click)="applyLoggedInFilter(3)" class="logged_in_filter" name="my_filter" value="3" id="js-filter-friend"><label for="js-filter-friend">My Friends</label></li>
+                                <li><input type="checkbox" (click)="applyLoggedInFilter(1)" class="logged_in_filter" name="my_filter" value="1" id="js-filter-all" checked><label for="js-filter-all" i18n>All</label></li>
+                                <li><input type="checkbox" (click)="applyLoggedInFilter(2)" class="logged_in_filter" name="my_filter" value="2" id="js-filter-wall"><label for="js-filter-wall" i18n>My Wall</label></li>
+                                <li><input type="checkbox" (click)="applyLoggedInFilter(3)" class="logged_in_filter" name="my_filter" value="3" id="js-filter-friend"><label for="js-filter-friend" i18n>My Friends</label></li>
                             </ul>
                         </div>
                     </div>
@@ -112,13 +113,13 @@
                 <div class="news-section-all" (scroll) = "lazyload($event)">
                     <div class="news-sec" *ngFor="let number of result;let i = index">
                         <div class="news-img">
-                            <img class="big-img" src="{{number['img_url']}}" alt="">
+                            <img class="big-img" src="{{number['img_url'] ? number['img_url'] : 'assets/images/no-img.png'}}" alt="">
                             <!-- <img class="small-img" src="assets/images/left-sidebar/5.png" alt=""> -->
                         </div>
                         <div class="news-cont">
 
                             <div class="news-content">
-                                <h4><a href="javascript:void(0)" (click) = "loadIframe(number['id'])"><span class="new_badge">new</span>{{number['title']}}</a></h4>
+                                <h4><a href="javascript:void(0)" (click) = "loadIframe(number['id'])"><span class="new_badge" i18n>new</span>{{number['title']}}</a></h4>
                                 <span class="news-content__timestamp">{{number['published_date']}}</span>
                                 <!-- <p [innerHTML]="(number['content'].length>100)? (number['content'] | slice:0:100)+'..':(number['content']) "></p> -->
                                 <p>{{number.content || number.description || number.custom_description}}</p>
@@ -142,15 +143,15 @@
                                     <div class="news_topic">
                                         <ul>
     
-                                            <li *ngIf="number.auth == 1 && number.shared_status == 0"><a href="javascript:void(0)"  (click)="shareOnMyWall(number.id,number.shared_status)" >Share to my wall</a></li>
+                                            <li *ngIf="number.auth == 1 && number.shared_status == 0"><a href="javascript:void(0)"  (click)="shareOnMyWall(number.id,number.shared_status)" i18n>Share to my wall</a></li>
     
-                                            <li *ngIf="number.auth == 1 && number.shared_status == 1"><a href="javascript:void(0)"  (click)="shareOnMyWall(number.id,number.shared_status)" >Remove from my wall</a></li>
+                                            <li *ngIf="number.auth == 1 && number.shared_status == 1"><a href="javascript:void(0)"  (click)="shareOnMyWall(number.id,number.shared_status)" i18n>Remove from my wall</a></li>
     
-                                            <li><a href="javascript:void(0)" target="_blank">Sources</a>
+                                            <li><a href="javascript:void(0)" target="_blank" i18n>Sources</a>
                                                 <!-- {{number[source_name]}} -->
                                             </li>
     
-                                            <li><a href="javascript:void(0)" class="news-type">Category</a><!-- {{number['category_name']}} --></li>
+                                            <li><a href="javascript:void(0)" class="news-type" i18n>Category</a><!-- {{number['category_name']}} --></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -158,7 +159,7 @@
                         </div>
                     </div>
 
-                    <div class="show-more-sec" *ngIf="result <= 0">
+                    <div class="show-more-sec" *ngIf="result.length <= 0" i18n>
                         No News Feed Available
                     </div>
 

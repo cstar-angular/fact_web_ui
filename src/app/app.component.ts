@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, LOCALE_ID, Inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-
-
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -10,7 +8,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 
 export class AppComponent implements OnInit {
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.router.events.subscribe((evt) =>
@@ -22,5 +20,4 @@ export class AppComponent implements OnInit {
       window.scrollTo(0, 0);
     });
   }
-
 }

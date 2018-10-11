@@ -15,8 +15,8 @@ export class SensitivitySettingComponent implements OnInit, AfterViewInit
 
   // @ViewChildren('cont') cont: ElementRef;
   // Test array
-  protected categories: Array<any> = [];
-  protected sources: Array<any> = [];
+  public categories: Array<any> = [];
+  public sources: Array<any> = [];
 
   // Change booleans
   categoriesHasChanges = false;

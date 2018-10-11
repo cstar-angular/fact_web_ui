@@ -1,9 +1,9 @@
 <div class="left-sidenav">
   <div class="keywords">
-    <h4 data-toggle="collapse" data-target="#keywords">keywords <img src="assets/images/left-sidebar/down.png" alt=""></h4>
+    <h4 data-toggle="collapse" data-target="#keywords" i18n>keywords <img src="assets/images/left-sidebar/down.png" alt=""></h4>
     <div id="keywords" class="collapse in">
         <div class="form-group">
-          <input type="text"  placeholder="add keywords…" autofocus="" [(ngModel)]="q" (keyup.enter)="search('keyword')">
+          <input type="text"  placeholder="add keywords…" autofocus="" [(ngModel)]="q" (keyup.enter)="search('keyword')" i18n-placeholder>
         </div>
         <!-- <ul *ngIf="todos.length > 0">
           <li *ngFor="let todo of todos" [class.completed]="todo.complete">
@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="categories">
-    <h4 data-toggle="collapse" data-target="#categories">categories <img src="assets/images/left-sidebar/down.png" alt=""></h4>
+    <h4 data-toggle="collapse" data-target="#categories" i18n>categories <img src="assets/images/left-sidebar/down.png" alt=""></h4>
     <div id="categories" class="collapse in">
         <ul>
           <li *ngFor="let key of categories | keys">
@@ -27,7 +27,7 @@
     </div>
   </div>
   <div class="sources">
-    <h4 data-toggle="collapse" data-target="#sources">sources <img src="assets/images/left-sidebar/down.png" alt=""></h4>
+    <h4 data-toggle="collapse" data-target="#sources" i18n>sources <img src="assets/images/left-sidebar/down.png" alt=""></h4>
     <div id="sources" class="collapse in">
 
         <ul>

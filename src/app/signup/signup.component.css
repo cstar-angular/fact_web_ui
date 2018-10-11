@@ -508,7 +508,7 @@ a.close-popup>i {
 .gender-selection {
   display: flex;
   justify-content: space-between;
-  height: 96px;
+  height: 84px;
 }
 
 @media (max-width: 1400px) {

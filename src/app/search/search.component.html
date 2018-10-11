@@ -9,7 +9,7 @@
             <div class="header_search col-lg-8 col-md-8 col-sm-8 col-xs-12 p-0">
                 <form action="">
                     <div class="form-group">
-                        <input type="text" (keyup.enter)="search()" id = "site-search" placeholder="SEARCH ( iex. “Macedonian national handball team” )">
+                        <input type="text" (keyup.enter)="search()" id = "site-search" placeholder="SEARCH ( iex. “Macedonian national handball team” )" i18n-placeholder>
                     </div>
                 </form>
             </div>
@@ -36,7 +36,8 @@
                     <!-- <li class="profile-menu" *ngIf="auth; else loggedOut"> -->
                     <li class="profile-menu" *ngIf="auth > 0; else loggedOut">
                         <a class="profile-pic" (click)="showSubmenu = !showSubmenu">
-                            <img src="{{result.image}}" alt="">
+                            <img *ngIf="result.image" src="{{result.image}}" />
+                            <img *ngIf="!result.image" src="assets/images/default-user.png" />
                             <span>{{ result.name }}</span>
                         </a>
                         <div class="profile_submenu" [ngClass]="{'expanded' : showSubmenu}">
@@ -44,19 +45,19 @@
                                 <li>
                                     <a [routerLink]="['/profile']">
                                         <img src="assets/images/user.png" alt="">
-                                        <span>My Profile</span>
+                                        <span i18n>My Profile</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a [routerLink]="['/sensitivity-setting']">
                                         <img src="assets/images/settings.png">
-                                        <span>Settings</span>
+                                        <span i18n>Settings</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="" (click)="getLogoutProfile()">
                                         <img src="assets/images/logout.png" alt="">
-                                        <span>Log out</span>
+                                        <span i18n>Log out</span>
                                     </a>
                                 </li>
                             </ul>
@@ -64,10 +65,18 @@
                     </li>
                     <ng-template #loggedOut>
                         <li class="before-login">
-                            <a href="javascript: void(0)" (click)="updateBxopen()">Register / Login</a>
+                            <a href="javascript: void(0)" (click)="updateBxopen()" i18n>Register / Login</a>
                         </li>
                     </ng-template>
                 </ul>
+            </div>
+            <div class="language-selector">
+                <ng-template ngFor let-lang [ngForOf]="languages">
+                    <span *ngIf="lang.code !== localeId">
+                        <a (click)="changeLanguage(lang.code)">{{lang.label}}</a>
+                    </span>
+                    <span *ngIf="lang.code === localeId">{{lang.label}} </span>
+                </ng-template>
             </div>
         </div>
     </nav>
@@ -77,15 +86,15 @@
   <div class="page-content page-content-search">
     <div class="container">
       <div class="search-result">
-        <h4>Showing Search Results for: <span class="searched-word">{{q}}</span> {{total_results}} Results ( In Total )</h4>
+        <h4 i18n>Showing Search Results for: <span class="searched-word">{{q}}</span> {{total_results}} Results ( In Total )</h4>
         <a class="search-close" (click)="handleCloseBtnClick()">
-            <span>Close Search Results</span>
+            <span i18n>Close Search Results</span>
             <img src="assets/images/close-1.png" />
         </a>
       </div>
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-result-users" *ngIf="users.length">
           <div class="news-sec-title">
-              <h2>Users / Media Outlets</h2>
+              <h2 i18n>Users / Media Outlets</h2>
           </div>
         <div class="following">
           <ul class="following-peoples">
@@ -102,8 +111,8 @@
       </div>
       <div class="mobile-tabs">
           <div class="mobile-tabs__content">
-              <button class="mobile-tab" (click)="tabClick(0)" [class.active]="mobileTabVisible == 0">In Titles</button>
-              <button class="mobile-tab" (click)="tabClick(1)" [class.active]="mobileTabVisible == 1">In Text</button>
+              <button class="mobile-tab" (click)="tabClick(0)" [class.active]="mobileTabVisible == 0" i18n>In Titles</button>
+              <button class="mobile-tab" (click)="tabClick(1)" [class.active]="mobileTabVisible == 1" i18n>In Text</button>
           </div>
       </div>
       <div class="search__row">
@@ -111,29 +120,29 @@
               <div class="home-mainsection">
                 <div class="news-sec-title">
                   <div class="title-filter-sec">
-                    <h2>In Titles</h2>
-                    <span>{{total_title}} Results</span>
+                    <h2 i18n>In Titles</h2>
+                    <span i18n>{{total_title}} Results</span>
                   </div>
                   <div class="filter-sec">
-                    <span>Filter By :</span>
+                    <span i18n>Filter By :</span>
                     <ul>
-                      <li><a id="js-title-all" [class.active]="activeFilterBy == 'tile'" (click)="filterSearch('tile')">All News</a> <span>|</span></li>
-                      <li><a id="js-title-sort" [class.active]="activeFilterBy == 'recent-title'" (click)="filterSearch('recent-title')">Recent</a><span>|</span></li>
-                      <li><a id="js-title-source" [class.active]="activeFilterBy == 'source-title'" (click)="filterSearch('source-title')">By Source</a><span>|</span></li>
-                      <li><a id="js-title-category" [class.active]="activeFilterBy == 'category-title'" (click)="filterSearch('category-title')">By Category</a></li>
+                      <li><a id="js-title-all" [class.active]="activeFilterBy == 'tile'" (click)="filterSearch('tile')" i18n>All News</a> <span>|</span></li>
+                      <li><a id="js-title-sort" [class.active]="activeFilterBy == 'recent-title'" (click)="filterSearch('recent-title')" i18n>Recent</a><span>|</span></li>
+                      <li><a id="js-title-source" [class.active]="activeFilterBy == 'source-title'" (click)="filterSearch('source-title')" i18n>By Source</a><span>|</span></li>
+                      <li><a id="js-title-category" [class.active]="activeFilterBy == 'category-title'" (click)="filterSearch('category-title')" i18n>By Category</a></li>
                     </ul>
                   </div>
                 </div>
                 <div class="news-section-all" *ngIf="title">
                   <div class="news-sec" *ngFor="let number of title">
                     <div class="news-img">
-                      <img class="big-img" src="{{number['img_url']}}" alt="">
+                      <img class="big-img" src="{{number['img_url'] ? number['img_url'] : 'assets/images/no-img.png'}}" alt="">
                       <img class="small-img" src="assets/images/left-sidebar/5.png" alt="">
                     </div>
                     <div class="news-cont">
-                      <a href="" class="news-type">politics</a>
+                      <a href="" class="news-type" i18n>politics</a>
                       <div class="news-content">
-                        <h4><a href="javascript:void(0)" (click) = "loadIframe(number['id'])"><span class="new_badge">New</span>{{number['title']}}</a></h4>
+                        <h4><a href="javascript:void(0)" (click) = "loadIframe(number['id'])"><span class="new_badge" i18n>New</span>{{number['title']}}</a></h4>
                         <span class="news-content__timestamp">{{number['published_date']}}</span>
                         <p [innerHTML]="(number['content'].length>100)? (number['content'] | slice:0:100)+'..':(number['content']) "></p>
                         <div class="news-cont__bottom">
@@ -154,7 +163,7 @@
                       </div>
                     </div>
                   </div>
-                  <div *ngIf="title.length <= 0">
+                  <div *ngIf="title.length <= 0" i18n>
                       No title found
                   </div>
               </div>
@@ -165,29 +174,29 @@
               <div class="home-mainsection">
                 <div class="news-sec-title">
                   <div class="title-filter-sec">
-                    <h2>In Text</h2>
-                    <span>{{total_content}} Results</span>
+                    <h2 i18n>In Text</h2>
+                    <span i18n>{{total_content}} Results</span>
                   </div>
                   <div class="filter-sec">
-                    <span>Filter By :</span>
+                    <span i18n>Filter By :</span>
                     <ul>
-                        <li><a id="js-content-all" [class.active]="activeFilterBy == 'all'" (click)="filterSearch('all')">All News</a><span>|</span></li>
-                        <li><a id="js-content-sort" [class.active]="activeFilterBy == 'recent-content'" (click)="filterSearch('recent-content')">Recent</a> <span>|</span></li>
-                        <li><a id="js-content-source" [class.active]="activeFilterBy == 'source-content'" (click)="filterSearch('source-content')">By Source</a> <span>|</span></li>
-                        <li><a id="js-content-category" [class.active]="activeFilterBy == 'category-content'" (click)="filterSearch('category-content')">By Category</a></li>
+                        <li><a id="js-content-all" [class.active]="activeFilterBy == 'all'" (click)="filterSearch('all')" i18n>All News</a><span>|</span></li>
+                        <li><a id="js-content-sort" [class.active]="activeFilterBy == 'recent-content'" (click)="filterSearch('recent-content')" i18n>Recent</a> <span>|</span></li>
+                        <li><a id="js-content-source" [class.active]="activeFilterBy == 'source-content'" (click)="filterSearch('source-content')" i18n>By Source</a> <span>|</span></li>
+                        <li><a id="js-content-category" [class.active]="activeFilterBy == 'category-content'" (click)="filterSearch('category-content')" i18n>By Category</a></li>
                     </ul>
                   </div>
                 </div>
                 <div class="news-section-all" *ngIf="content">
                   <div class="news-sec" *ngFor="let number of content">
                     <div class="news-img">
-                      <img class="big-img" src="{{number['img_url']}}" alt="">
+                      <img class="big-img" src="{{number['img_url'] ? number['img_url'] : 'assets/images/no-img.png'}}" alt="">
                       <img class="small-img" src="assets/images/left-sidebar/5.png" alt="">
                     </div>
                     <div class="news-cont">
-                      <a href="" class="news-type">politics</a>
+                      <a href="" class="news-type" i18n>politics</a>
                       <div class="news-content">
-                        <h4><a href="javascript:void(0)" (click) = "loadIframe(number['id'])"><span class="new_badge">New</span>{{number['title']}}</a></h4>
+                        <h4><a href="javascript:void(0)" (click) = "loadIframe(number['id'])"><span class="new_badge" i18n>New</span>{{number['title']}}</a></h4>
                         <span class="news-content__timestamp">{{number['published_date']}}</span>
                         <p [innerHTML]="(number['content'].length>100)? (number['content'] | slice:0:100)+'..':(number['content']) "></p>
                         <div class="news-cont__bottom">
@@ -208,7 +217,7 @@
                       </div>
                     </div>
                   </div>
-                  <div *ngIf="content.length <= 0">
+                  <div *ngIf="content.length <= 0" i18n>
                       No content found
                   </div>
               </div>

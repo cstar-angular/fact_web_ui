@@ -1,12 +1,12 @@
 	<div class="right-sidenav">
 	<div class="on-other-side">
-		<h2>On the other side</h2>
+		<h2 i18n>On the other side</h2>
 		<ul class="otherside-sec">
 			<li *ngFor="let other of result">
 				<div class="othersideBox">
 					<div class="otherside-img">
 						<img src="assets/images/right-sidebar/1_small.png" alt="" class="small-pic">
-						<img src="{{other.img_url}}" alt="" class="big-pic">
+						<img src="{{other.img_url ? other.img_url : 'assets/images/no-img.png'}}" alt="" class="big-pic">
 						<p>{{ other.category_name }}</p>
 					</div>
 					<div class="otherside-content">
@@ -15,14 +15,14 @@
 							<li><a href="">A1ON</a><span>|</span></li>
 							<li><a href="">НОВА МАКЕДОНИЈА</a><span>|</span></li>
 							<li><a href="">ФАКТОР</a></li>
-							<li><a href="">More…</a></li>
+							<li><a href="" i18n>More…</a></li>
 						</ul>
 					</div>
 				</div>
 
 			</li>
 			<li>
-				<a class="take-me-there" routerLink="/">take me there <img src="assets/images/door.png"></a>
+				<a class="take-me-there" [routerLink]="['/']" routerLinkActive="active" i18n>take me there <img src="assets/images/door.png"></a>
 			</li>
 		</ul>
 	</div>
@@ -40,13 +40,13 @@
 					</div>
 				</div>
 				<div class="celebs__single__right">
-					<div class="celebs__single__title">ELEM will change the filters on their manufacturing</div>
-					<div class="celebs__single__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>
+					<div class="celebs__single__title" i18n>ELEM will change the filters on their manufacturing</div>
+					<div class="celebs__single__excerpt" i18n>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>
 					<div class="celebs__single__footer">
 						<button class="celebs__single__view-btn">
 							<img src="assets/images/eye.png">
 						</button>
-						<span class="celebs__single__timestamp">11 minutes ago</span>
+						<span class="celebs__single__timestamp">11 <span i18n>minutes ago</span></span>
 					</div>
 				</div>
 			</div>
@@ -58,13 +58,13 @@
 					</div>
 				</div>
 				<div class="celebs__single__right">
-					<div class="celebs__single__title">Nimiz will be heading to Athens in Monday</div>
-					<div class="celebs__single__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>
+					<div class="celebs__single__title" i18n>Nimiz will be heading to Athens in Monday</div>
+					<div class="celebs__single__excerpt" i18n>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>
 					<div class="celebs__single__footer">
 						<button class="celebs__single__view-btn">
 							<img src="assets/images/eye.png">
 						</button>
-						<span class="celebs__single__timestamp">17 minutes ago</span>
+						<span class="celebs__single__timestamp">17 <span i18n>minutes ago</span></span>
 					</div>
 				</div>
 			</div>
@@ -76,18 +76,18 @@
 					</div>
 				</div>
 				<div class="celebs__single__right">
-					<div class="celebs__single__title">Jentiloni refuses pre contract with Berlusconi</div>
-					<div class="celebs__single__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>
+					<div class="celebs__single__title" i18n>Jentiloni refuses pre contract with Berlusconi</div>
+					<div class="celebs__single__excerpt" i18n>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>
 					<div class="celebs__single__footer">
 						<button class="celebs__single__view-btn">
 							<img src="assets/images/eye.png">
 						</button>
-						<span class="celebs__single__timestamp">1 hour ago</span>
+						<span class="celebs__single__timestamp">1 <span i18n>hour ago</span></span>
 					</div>
 				</div>
 			</div>
 			<div class="celebs__footer">
-				<a class="celebs__load-more-btn" href="#">
+				<a class="celebs__load-more-btn" href="#" i18n>
 					Load More
 					<img src="assets/images/caret-down.svg">
 				</a>

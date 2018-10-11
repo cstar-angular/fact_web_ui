@@ -84,6 +84,8 @@ export class LeftSidenavComponent implements OnInit {
   get todos() {
     return this.todoDataService.getAllTodos();
   }
+
+  search(keyword = '') {}
   
 
 }

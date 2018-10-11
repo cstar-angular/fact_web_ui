@@ -37,6 +37,12 @@ export class SearchComponent implements OnInit {
     auth : number = 0;
     result :Array<any>=[];
 
+    languages = [
+        {label: 'MK', code: 'en'},
+        {label: 'AL', code: 'al'},
+    ];
+    localeId: string = localStorage.getItem('language');
+
   constructor(
       private authService: AuthService,
       private route: ActivatedRoute,
@@ -129,4 +135,10 @@ export class SearchComponent implements OnInit {
   public tabClick(tab) {
     this.mobileTabVisible = tab
   }
+
+  changeLanguage(lang: string) {
+    window.localStorage.setItem('language', lang);
+    this.localeId = lang;
+    location.reload();
+}
 }

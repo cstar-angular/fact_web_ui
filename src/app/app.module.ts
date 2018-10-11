@@ -1,11 +1,20 @@
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './core/token.interceptor';
 import { KeysPipe } from './core/keys-pipe.pipe';
 import { SafePipe } from './core/safe-pipe.pipe';
+
+import { registerLocaleData, Location } from '@angular/common';
+import localeAl from '@angular/common/locales/sq';
+import localeAlExtra from '@angular/common/locales/extra/sq';
+import localeMas from '@angular/common/locales/mas';
+import localeMasExtra from '@angular/common/locales/extra/mas';
+
+registerLocaleData(localeAl, 'sq', localeAlExtra);
+registerLocaleData(localeMas, 'mk', localeMasExtra);
 
 import {
   SocialLoginModule,
@@ -60,6 +69,9 @@ import { SensitivitySettingComponent } from './sensitivity-setting/sensitivity-s
 import { NewsStorage } from './storage/news.storage';
 import { SortingServilce } from './core/sorting.service';
 import { MomentModule } from 'angular2-moment';
+import { LeftSidenavComponent } from './left-sidenav/left-sidenav.component';
+import { HomeMainsectionComponent } from './home-mainsection/home-mainsection.component';
+import { ErrorDialogComponent } from './core/error-dialog.component';
 
 
 export function getAuthServiceConfigs()
@@ -87,6 +99,10 @@ export function getAuthServiceConfigs()
   return CONFIG;
 }
 
+export function getLocale() {
+  return window.localStorage.getItem('language');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,10 +119,12 @@ export function getAuthServiceConfigs()
     IframeComponent,
     OtherNewsComponent,
     LogoutComponent,
-    SensitivitySettingComponent
+    SensitivitySettingComponent,
+    LeftSidenavComponent,
+    HomeMainsectionComponent,
+    ErrorDialogComponent
   ],
   imports: [
-
     BrowserModule,
     AppRoutingModule,
     NgxCarouselModule,
@@ -117,7 +135,7 @@ export function getAuthServiceConfigs()
     FlashMessagesModule.forRoot(),
     InfiniteScrollModule,
     SocialLoginModule,
-    MomentModule
+    MomentModule,
   ],
   providers: [
     TodoDataService,
@@ -126,7 +144,8 @@ export function getAuthServiceConfigs()
     NewsStorage,
     SortingServilce,
     AnalyticService,
-    TokenInterceptor, {
+    TokenInterceptor, 
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
@@ -134,6 +153,10 @@ export function getAuthServiceConfigs()
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
+    },
+    { 
+      provide: LOCALE_ID, 
+      useValue: 'en'
     }
   ],
   bootstrap: [AppComponent]

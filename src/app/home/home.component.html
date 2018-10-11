@@ -12,18 +12,18 @@
                         <h4 data-toggle="collapse" data-target="#keywords">keywords <img src="assets/images/left-sidebar/down.png" alt=""></h4>
                         <div id="keywords" class="collapse in">
                             <div class="form-group">
-                              <input type="text" id="js-query-q"  placeholder="add keywords…" autofocus="" [(ngModel)]="q" >
-                              <input type="button" value="Filter" (click)="applyFilter()">
+                              <input type="text" id="js-query-q"  placeholder="add keywords…" autofocus="" [(ngModel)]="q" i18n-placeholder>
+                              <input type="button" value="Filter" (click)="applyFilter('onload')" i18n-value>
                             </div>
 
                         </div>
                     </div>
                     <div class="categories sidenavBox">
-                        <h4 data-toggle="collapse" data-target="#categories">categories <img src="assets/images/left-sidebar/down.png" alt=""></h4>
+                        <h4 data-toggle="collapse" data-target="#categories" i18n>categories <img src="assets/images/left-sidebar/down.png" alt=""></h4>
                         <div id="categories" class="collapse in">
                             <ul>
                               <li *ngFor="let category of categories">
-                                <input type="checkbox" (click) = "applyFilter()" class="js-query-search-category" id="category-{{ category.id }}" value="{{ category.id }}">
+                                <input type="checkbox" (click) = "applyFilter()" class="js-query-search-category" id="category-{{ category.id }}" value="{{ category.id }}" [(ngModel)]="category.checked">
                                 <label for="category-{{ category.id }}">{{category.category_name }}</label>
                               </li>
                             </ul>
@@ -34,7 +34,7 @@
                         <div id="sources" class="collapse in">
                             <ul>
                                <li *ngFor="let source of sources">
-                                <input type="checkbox" (click) = "applyFilter()" class="js-query-search-source"  id="source-{{source.id}}" value="{{source.id}}">
+                                <input type="checkbox" (click) = "applyFilter()" class="js-query-search-source"  id="source-{{source.id}}" value="{{source.id}}" [(ngModel)]="source.checked">
                                 <label for="source-{{source.id}}">
                                 	<!-- <span><img src="assets/images/left-sidebar/1.png" alt="">{{source.source }}</span> -->
                                 	<span>{{source.source }}</span>
@@ -59,14 +59,14 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="pull-left">
-                            <h4 class="newsTitle">News</h4>
+                            <h4 class="newsTitle" i18n>News</h4>
                         </div>
                         <div *ngIf="auth == 1" class="pull-right">
-                            <span class="filTitle">Filter : &nbsp;</span>
+                            <span class="filTitle" i18n>Filter : &nbsp;</span>
                             <ul class="filter_newsFeed">
-                                <li><input type="checkbox" (click)="applyLoggedInFilter(1)" class="logged_in_filter" name="my_filter" value="1" id="js-filter-all" checked><label for="js-filter-all">All</label></li>
-                                <li><input type="checkbox" (click)="applyLoggedInFilter(2)" class="logged_in_filter" name="my_filter" value="2" id="js-filter-wall"><label for="js-filter-wall">My Wall</label></li>
-                                <li><input type="checkbox" (click)="applyLoggedInFilter(3)" class="logged_in_filter" name="my_filter" value="3" id="js-filter-friend"><label for="js-filter-friend">My Friends</label></li>
+                                <li><input type="checkbox" (click)="applyLoggedInFilter(1)" class="logged_in_filter" name="my_filter" value="1" id="js-filter-all" checked><label for="js-filter-all" i18n>All</label></li>
+                                <li><input type="checkbox" (click)="applyLoggedInFilter(2)" class="logged_in_filter" name="my_filter" value="2" id="js-filter-wall"><label for="js-filter-wall" i18n>My Wall</label></li>
+                                <li><input type="checkbox" (click)="applyLoggedInFilter(3)" class="logged_in_filter" name="my_filter" value="3" id="js-filter-friend"><label for="js-filter-friend" i18n>My Friends</label></li>
                             </ul>
                         </div>
                     </div>
@@ -75,12 +75,12 @@
                         <div class="news-section-all">
                             <div class="news-sec lazy-c-{{i}}" *ngFor="let number of result;let i = index">
                                 <div class="news-img">
-                                    <img class="big-img" src="{{number['img_url']}}" alt="">
+                                    <img class="big-img" [src]="number['img_url'] ? number['img_url'] : 'assets/images/no-img.png'" alt="">
                                     <!-- <img class="small-img" src="assets/images/left-sidebar/5.png" alt=""> -->
                                 </div>
                                 <div class="news-cont">
                                     <div class="news-content">
-                                        <h4><a href="javascript:void(0)" (click) = "loadIframe(number['id'])"><span class="new_badge">New</span>{{number['title']}}</a></h4>
+                                        <h4><a href="javascript:void(0)" (click) = "loadIframe(number['id'])"><span class="new_badge" *ngIf="number['isnew']">New</span>{{number['title']}}</a></h4>
                                         <span class="news-content__timestamp">{{number['published_date']}}</span>
                                         <p>{{number.content || number.description || number.custom_description}}</p>
                                         <div class="news-cont__bottom">
@@ -102,8 +102,8 @@
                                             </div>
                                             <div class="news_topic">
                                                 <ul>
-                                                    <li *ngIf="number.auth == 1 && number.shared_status == 0"><a href="javascript:void(0)" id="js-share-{{number.id}}" (click)="shareOnMyWall(number.id,number.shared_status)" >Share to my wall</a></li>
-                                                    <li *ngIf="number.auth == 1 && number.shared_status == 1"><a href="javascript:void(0)"  (click)="shareOnMyWall(number.id,number.shared_status)" >Remove from my wall</a></li>
+                                                    <li *ngIf="number.auth == 1 && number.shared_status == 0"><a href="javascript:void(0)" id="js-share-{{number.id}}" (click)="shareOnMyWall(number.id,number.shared_status)" i18n>Share to my wall</a></li>
+                                                    <li *ngIf="number.auth == 1 && number.shared_status == 1"><a href="javascript:void(0)"  (click)="shareOnMyWall(number.id,number.shared_status)" i18n>Remove from my wall</a></li>
                                                     <li><a href="javascript:void(0)" target="_blank">Source - {{number.source_name}}</a></li>
                                                     <li><a href="javascript:void(0)" class="news-type top-label">{{number.category_name}}</a></li>
                                                 </ul>
@@ -113,25 +113,25 @@
                                 </div>
                             </div>
 
-                            <div class="show-more-sec" *ngIf="result <= 0">
+                            <div class="show-more-sec" *ngIf="result.length <= 0" i18n>
                                 No News Feed Available
                             </div>
                         </div>
-                        <button type="button" id="js-load-more" (click)="lazyload()" [class.--loading]="isLoading">Load More <span class="glyphicon" [ngClass]="isLoading ? 'glyphicon glyphicon-refresh' : 'glyphicon-menu-down'"></span></button>
+                        <button type="button" id="js-load-more" (click)="lazyload()" [class.--loading]="isLoading" i18n>Load More <span class="glyphicon" [ngClass]="isLoading ? 'glyphicon glyphicon-refresh' : 'glyphicon-menu-down'"></span></button>
                 </div>
             </div>
             <!--other side---->
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <div class="right-sidenav">
                 <div class="on-other-side">
-                    <h2>On the other side</h2>
+                    <h2 i18n>On the other side</h2>
                     <ul class="otherside-sec">
                         <li *ngFor="let other of other_news">
                             <div class="othersideBox">
                                 <div class="othersideBox__top">
                                     <div class="otherside-img">
                                         <img src="assets/images/right-sidebar/1_small.png" alt="" class="small-pic">
-                                        <img src="{{other.img_url}}" alt="" class="big-pic">
+                                        <img src="{{other.img_url ? other.img_url : 'assets/images/no-img.png'}}" alt="" class="big-pic">
                                         <p>{{ other.category_name }}</p>
                                     </div>
                                     <div class="otherside-content">
@@ -141,10 +141,10 @@
                                 </div>
                                 <div class="othersideBox__bottom">
                                     <ul>
-                                        <li><a href="">A1ON</a><span>|</span></li>
-                                        <li><a href="">НОВА МАКЕДОНИЈА</a><span>|</span></li>
-                                        <li><a href="">ФАКТОР</a><span></span></li>
-                                        <li><a href="">More…</a></li>
+                                        <li><a href="" i18n>A1ON</a><span>|</span></li>
+                                        <li><a href="" >НОВА МАКЕДОНИЈА</a><span>|</span></li>
+                                        <li><a href="" >ФАКТОР</a><span></span></li>
+                                        <li><a href="" i18n>More…</a></li>
                                     </ul>
                                 </div>
                             </div>

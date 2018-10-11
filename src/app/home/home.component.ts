@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { KeysPipe } from '../core/keys-pipe.pipe';
 import { TokenStorage } from '../core/token.storage';
 import { AuthService } from '../core/auth.service';
@@ -286,10 +286,87 @@ export class HomeComponent implements OnInit
         // this._http.get('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Ftime.mk%2Frss%2Fmakedonija')
         //     .subscribe(data => console.log(data), error => console.log(error));
         this._newsService.getCategories()
-            .subscribe(response => this.categories = response.data);
+            .subscribe(response => {
+                this.categories = response.data;
+                
+                if (this.token.getToken() != null) {
+                    this.auth = 1;
+                    this.authService.attemptUserCategory().subscribe(
+                        data =>
+                        {
+                            this.user_categories = data.user_categories;
+                            for (let i = 0; i < this.user_categories.length; i++)
+                            {
+                                this.selected_category.push(this.user_categories[i].category_id);
+                            }
+
+                            for (var i = 0; i < this.categories.length; i++)
+                            {
+                                if (this.selected_category.find(id => this.categories[i].id == id))
+                                {
+                                    this.categories[i].checked = true;
+                                }
+                            }
+
+                            this.applyFilter('onload');
+                        });
+                } else {
+                    this.auth = 0;
+                    this.selected_category = JSON.parse(localStorage.getItem('selected_categories'));
+
+                    for (var i = 0; i < this.categories.length; i++)
+                    {
+                        if (this.selected_category.find(id => this.categories[i].id == id))
+                        {
+                            this.categories[i].checked = true;
+                        }
+                    }
+
+                    this.applyFilter('onload');
+                }
+            });
 
         this._newsService.getSources()
-            .subscribe(response => this.sources = response.data);
+            .subscribe(response => {
+                this.sources = response.data;
+
+                if (this.token.getToken() != null) {            
+                    this.authService.attemptUserSource().subscribe(
+                        data =>
+                        {
+                            this.user_sources = data.user_sources;
+                            for (let i = 0; i < this.user_sources.length; i++)
+                            {
+                                this.selected_source.push(this.user_sources[i].source_id);
+                            }
+
+                            for (var i = 0; i < this.sources.length; i++)
+                            {
+                                if (this.selected_source.find(id => this.sources[i].id == id))
+                                {
+                                    this.sources[i].checked = true;
+                                }
+                            }
+
+                            this.applyFilter('onload');
+                        });
+
+                } else
+                {
+                    this.auth = 0;
+                    this.selected_source = JSON.parse(localStorage.getItem('selected_sources'));
+
+                    for (var i = 0; i < this.sources.length; i++)
+                    {
+                        if (this.selected_source.find(id => this.sources[i].id == id))
+                        {
+                            this.sources[i].checked = true;
+                        }
+                    }
+
+                    this.applyFilter('onload');
+                }
+            });
 
         this.carouselOne = {
             grid: { xs: this.banner_width, sm: 2, md: 2, lg: 2, all: 0 },
@@ -306,60 +383,7 @@ export class HomeComponent implements OnInit
         };
 
         this.analytics.updateStats('home');
-        if (this.token.getToken() != null)
-        {
-            this.auth = 1;
-            this.authService.attemptUserCategory().subscribe(
-                data =>
-                {
-                    this.user_categories = data.user_categories;
-                    for (let i = 0; i < this.user_categories.length; i++)
-                    {
-                        this.selected_category.push(this.user_categories[i].category_id);
-                    }
-                    const category: any = document.getElementsByClassName("js-query-search-category");
-
-                    for (var i = 0; i < category.length; i++)
-                    {
-                        if (this.selected_category.find(id => category[i].value == id))
-                        {
-                            category[i].checked = true;
-                        }
-                        if (category[i]['checked'] == true)
-                        {
-                            this.selected_category.push(category[i]['value']);
-                        }
-                    }
-                });
-            this.authService.attemptUserSource().subscribe(
-                data =>
-                {
-                    this.user_sources = data.user_sources;
-                    for (let i = 0; i < this.user_sources.length; i++)
-                    {
-                        this.selected_source.push(this.user_sources[i].source_id);
-                    }
-                    const source: any = document.getElementsByClassName("js-query-search-source");
-
-                    for (var i = 0; i < source.length; i++)
-                    {
-                        if (this.selected_source.find(id => source[i].value == id))
-                        {
-                            source[i].checked = true;
-                        }
-                        if (source[i]['checked'] == true)
-                        {
-                            this.selected_category.push(source[i]['value']);
-                        }
-                    }
-
-                });
-
-        } else
-        {
-            this.auth = 0;
-        }
-        this.applyFilter('onload');
+        
         this.twitter_api();
         this.authService.articleAds(1).subscribe(data =>
         {
@@ -371,6 +395,7 @@ export class HomeComponent implements OnInit
             });
 
     }
+
     twitter_api()
     {
         this.authService.twitter().subscribe(
@@ -483,15 +508,25 @@ export class HomeComponent implements OnInit
             }
         }
 
-        // if (this.user_categories.length && this.user_categories.length > 0)
-        // {
-        this.updateType('category');
-        // }
+        if(this.auth) {
+            // if (this.user_categories.length && this.user_categories.length > 0)
+            // {
+            this.updateType('category');
+            // }
 
-        // if (this.user_sources.length && this.user_sources.length > 0)
-        // {
-        this.updateType('source');
-        // }
+            // if (this.user_sources.length && this.user_sources.length > 0)
+            // {
+            this.updateType('source');
+            // }
+        } else {
+            if(this.selected_category.length > 0) {
+                localStorage.setItem('selected_categories', JSON.stringify(this.selected_category));
+            }
+            
+            if(this.selected_source.length > 0) {
+                localStorage.setItem('selected_sources', JSON.stringify(this.selected_source));
+            }
+        }
 
         var type = document.getElementsByClassName("logged_in_filter");
         for (var i = 0; i < type.length; i++)
@@ -511,10 +546,11 @@ export class HomeComponent implements OnInit
 
                     this.other_news = data.other_news.data;
                     this.last_page = data.news.last_page;
+                    this.newBadgeFilter();
                 });
         }
     }
-    lazyload(ev)
+    lazyload(ev = '')
     {
         this.applyFilter('interval');
 
@@ -549,7 +585,6 @@ export class HomeComponent implements OnInit
             this.authService.homeFeedPaginate(this.q, this.selected_category, this.selected_source, this.filter_type, this.nextpage, 'manual').subscribe(
                 data =>
                 {
-                    console.log(data);
                     this.isLoading = false;
                     if (data)
                     {
@@ -635,6 +670,25 @@ export class HomeComponent implements OnInit
                 this._flashMessagesService.show('Please select atleast one source !', { cssClass: 'alert-danger', timeout: 5000 });
             }
         }
+    }
+
+    newBadgeFilter() {
+        console.log(this.result);
+        var todayDate = new Date();
+        console.log(todayDate);
+        
+        this.result.map(newsItem => {
+            var date = new Date(newsItem.created_at);
+            var timeDiff = Math.abs(todayDate.getTime() - date.getTime());
+            var diffMins = Math.ceil(timeDiff / (1000 * 60 * 24));
+            if (diffMins <= 30) {
+                newsItem['isnew'] = true;
+            } else {
+                newsItem['isnew'] = false;
+            }
+        });
+
+        console.log(this.result);
     }
 
 }
